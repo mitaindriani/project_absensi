@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Side Navigation Menu</title>
+  
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<style>
+
+
+
+.container {
+    width: 100%;
+    height: 100vh;
+    color: #fff;
+    font-family: sans-serif;
+  background-image: url('blue.jpeg'); /* Ganti dengan path gambar latar belakang Anda */
+  background-size: cover; /* Mengatur gambar agar menutupi seluruh latar belakang */
+  background-position: center; /* Memusatkan gambar */
+  
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative; /* Menambahkan posisi relatif untuk pseudo-element */
+  overflow: hidden; /* Menyembunyikan overflow */
+}
+
+.container .sidenav {
+    width: 115px;
+    height: 100vh;
+    overflow: hidden;
+    position: fixed;
+    padding: 40px 16px;
+    background-color: #000;
+    transition: width 0.6s, left 0.6s;
+    left: -20px;
+    /* Adjust the value for desired leftward shift */
+}
+
+label .close-btn {
+    display: none;
+}
+
+.container .logo h2 {
+    font-size: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s ease;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sidenav .menu_text {
+    margin-top: 24px;
+}
+
+.sidenav .menu_text p {
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding-left: 10px;
+}
+
+.sidenav .icon_items ul {
+    list-style: none;
+    margin-top: 32px;
+    padding: 0 10px;
+}
+
+.sidenav .icon_items ul li {
+    cursor: pointer;
+    margin: 4px;
+    padding: 12px 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    transition: 0.5s ease;
+}
+
+.icon_items .active,
+.sidenav .icon_items ul li:hover {
+    background: #119aaf;
+}
+
+.sidenav .icon_items ul li i {
+    font-size: 26px;
+    padding: 0 12px;
+}
+
+.sidenav .icon_items ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 17px;
+    padding-left: 18px;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s ease;
+}
+
+#click {
+    display: none;
+}
+
+.container label {
+    position: absolute;
+    left: 3%;
+    top: 1.5%;
+    font-size: 24px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+#click:checked~.sidenav {
+    width: 260px;
+}
+
+#click:checked~.sidenav .icon_items ul li a {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#click:checked~.sidenav .logo h2 {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#click:checked~.sidenav .search_bar input {
+    width: 100%;
+    margin-left: 0;
+}
+
+#click:checked~.sidenav .search_bar i {
+    left: 20px;
+}
+
+#click:checked~label {
+    left: 1%;
+}
+
+#click:checked~label .close-btn {
+    display: block;
+}
+
+#click:checked~label .menu-btn {
+    display: none;
+}
+</style>
+<body>
+  <div class="container">
+    <input type="checkbox" id="click">
+    <label for="click">
+      <i class='menu-btn bx bx-menu'></i>
+      <i class='close-btn bx bx-x-circle'></i>
+    </label>
+
+    <div class="sidenav">
+      <div class="logo">
+        <h2>SMKN 1 KEPANJEN</h2><div class="right_area">
+      </div><img src="kanesa.png" width="50px" height="50px">
+      </div>
+
+      <div class="icon_items">
+        <ul>
+          <li class="active">
+            <i class='bx bxs-home'></i>
+            <a href="index.html">Home</a>
+          </li>
+          <li>
+            <i class='bx bxs-user-circle'></i>
+            <a href="formabsen.php">Absen Masuk</a>
+          </li>
+          <li>
+            <i class='bx bxs-message-dots'></i>
+            <a href="formpulang.php">Absen Pulang</a>
+          </li>
+          <li>
+            <i class='bx bxs-bar-chart-alt-2'></i>
+            <a href="datasiswa.php">Data Siswa</a>
+          </li>
+          <li>
+            <i class='bx bxs-cog'></i>
+            <a href="#">Setting</a>
+          </li>
+          <li>
+            <i class='bx bx-log-in'></i>
+            <a href="login.php">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="containers">
+      <div class="kotak-kecil">
+        <h2>SMKN 1 KEPANJEN</h2>
+        <p>Biodata SMKN 1 Kepanjen</p>
+      </div>
+      <div class="lingkaran">
+        <img src="kanesa.png" alt="Logo SMKN 1 Kepanjen">
+      </div>
+      <div class="kotak-panjang">
+        <p>Teks tentang SMKN 1 Kepanjen</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

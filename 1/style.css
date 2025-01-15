@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background: #ffffff;
+    color: #ffffff;
+}
+
+.container .sidenav {
+    width: 115px;
+    height: 100vh;
+    overflow: hidden;
+    position: fixed;
+    padding: 40px 16px;
+    background-color: #000;
+    transition: width 0.6s, left 0.6s;
+    left: -20px;
+    /* Adjust the value for desired leftward shift */
+}
+
+label .close-btn {
+    display: none;
+}
+
+.container .logo h2 {
+    font-size: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s ease;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sidenav .menu_text {
+    margin-top: 24px;
+}
+
+.sidenav .menu_text p {
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding-left: 10px;
+}
+
+.sidenav .icon_items ul {
+    list-style: none;
+    margin-top: 32px;
+    padding: 0 10px;
+}
+
+.sidenav .icon_items ul li {
+    cursor: pointer;
+    margin: 4px;
+    padding: 12px 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    transition: 0.5s ease;
+}
+
+.icon_items .active,
+.sidenav .icon_items ul li:hover {
+    background: #119aaf;
+}
+
+.sidenav .icon_items ul li i {
+    font-size: 26px;
+    padding: 0 12px;
+}
+
+.sidenav .icon_items ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 17px;
+    padding-left: 18px;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s ease;
+}
+
+#click {
+    display: none;
+}
+
+.container label {
+    position: absolute;
+    left: 3%;
+    top: 1.5%;
+    font-size: 24px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+#click:checked~.sidenav {
+    width: 260px;
+}
+
+#click:checked~.sidenav .icon_items ul li a {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#click:checked~.sidenav .logo h2 {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#click:checked~.sidenav .search_bar input {
+    width: 100%;
+    margin-left: 0;
+}
+
+#click:checked~.sidenav .search_bar i {
+    left: 20px;
+}
+
+#click:checked~label {
+    left: 1%;
+}
+
+#click:checked~label .close-btn {
+    display: block;
+}
+
+#click:checked~label .menu-btn {
+    display: none;
+}
+
+.absen-box {
+    background-color: #ffffff;
+    /* White background for the box */
+    padding: 95px;
+    /* Padding inside the box */
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    /* Shadow effect */
+    width: 90%;
+    /* Width of the box */
+    max-width: 800px;
+    /* Maximum width */
+    text-align: center;
+    /* Center text inside the box */
+    margin: 20px auto;
+    /* Center the box horizontally with margin */
+    margin-top: 50px;
+    /* Increase top margin to raise the box */
+    position: relative;
+    /* Allow positioning adjustments */
+    left: 20px;
+    /* Shift the box slightly to the right */
+}
+
+.content {
+    flex-grow: 1;
+    /* Allow content to take up remaining space */
+    display: flex;
+    flex-direction: column;
+    /* Stack items vertically */
+    align-items: center;
+    /* Center items horizontally */
+    justify-content: center;
+    /* Center items vertically */
+    height: 100vh;
+    /* Full height of the viewport */
+    background-color: #f0f0f0;
+    /* Optional: background color for content area */
+    color: #000;
+    /* Change text color for visibility */
+    text-align: center;
+    /* Center text within the content area */
+}
+
+.subject_buttons {
+    display: flex;
+    /* Use flexbox for layout */
+    flex-wrap: wrap;
+    /* Allow buttons to wrap to the next line */
+    justify-content: center;
+    /* Center buttons horizontally */
+    margin-top: 20px;
+    /* Space above the buttons */
+}
+
+.subject_buttons button {
+    width: calc(33.33% - 20px);
+    /* Set width to one-third of the container minus margin */
+    padding: 10px;
+    /* Padding inside the buttons */
+    margin: 10px;
+    /* Space between buttons */
+    border: none;
+    /* Remove default border */
+    border-radius: 5px;
+    /* Rounded corners */
+    background-color: #119aaf;
+    /* Button background color */
+    color: white;
+    /* Text color */
+    font-size: 16px;
+    /* Font size */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    transition: background-color 0.3s ease;
+    /* Smooth background color transition */
+}
+
+.subject_buttons button:hover {
+    background-color: #0e7a8a;
+    /* Darker background on hover */
+}
+
+.containers {
+    display: flex;
+    flex-direction: column;
+    /* Mengatur agar kotak panjang berada di bawah */
+    align-items: center;
+    height: 100vh;
+}
+
+.kotak-container {
+    display: flex;
+    align-items: center;
+    /* Mengatur agar kotak kecil dan gambar sejajar secara vertikal */
+    margin-bottom: 20px;
+    /* Jarak antara kotak kecil dan kotak panjang */
+}
+
+.kotak-kecil {
+    background-color: #79afb7;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-right: 50px;
+    /* Jarak antara kotak kecil dan gambar */
+}
+
+.gambar {
+    width: 100px;
+    /* Atur lebar gambar sesuai kebutuhan */
+    height: auto;
+    /* Mempertahankan rasio aspek gambar */
+}
+
+.kotak-panjang {
+    width: 500px;
+    padding: 80px;
+    border-radius: 10px;
+    background-color: #cb8535;
+}

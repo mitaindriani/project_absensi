@@ -15,6 +15,7 @@
 }
 
 .container .sidenav {
+    
     width: 115px;
     height: 100vh;
     overflow: hidden;
@@ -142,42 +143,26 @@ img {
 
 .absen-box {
     background-color: #ffffff;
-    /* White background for the box */
     padding: 95px;
-    /* Padding inside the box */
     border-radius: 10px;
-    /* Rounded corners */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    /* Shadow effect */
     width: 90%;
-    /* Width of the box */
     max-width: 800px;
-    /* Maximum width */
     text-align: center;
-    /* Center text inside the box */
     margin: 20px auto;
-    /* Center the box horizontally with margin */
     margin-top: 50px;
-    /* Increase top margin to raise the box */
     position: relative;
-    /* Allow positioning adjustments */
     left: 20px;
-    /* Shift the box slightly to the right */
 }
 
 .content {
     flex-grow: 1;
-    /* Allow content to take up remaining space */
     display: flex;
     flex-direction: column;
-    /* Stack items vertically */
     align-items: center;
-    /* Center items horizontally */
     justify-content: center;
     /* Center items vertically */
     height: 100vh;
-    /* Full height of the viewport */
-    background-color: #f0f0f0;
     /* Optional: background color for content area */
     color: #000;
     /* Change text color for visibility */
@@ -224,41 +209,4 @@ img {
     /* Darker background on hover */
 }
 
-.containers {
-    display: flex;
-    flex-direction: column;
-    /* Mengatur agar kotak panjang berada di bawah */
-    align-items: center;
-    height: 100vh;
-}
 
-.kotak-container {
-    display: flex;
-    align-items: center;
-    /* Mengatur agar kotak kecil dan gambar sejajar secara vertikal */
-    margin-bottom: 20px;
-    /* Jarak antara kotak kecil dan kotak panjang */
-}
-
-.kotak-kecil {
-    background-color: #79afb7;
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    margin-right: 50px;
-    /* Jarak antara kotak kecil dan gambar */
-}
-
-.gambar {
-    width: 100px;
-    /* Atur lebar gambar sesuai kebutuhan */
-    height: auto;
-    /* Mempertahankan rasio aspek gambar */
-}
-
-.kotak-panjang {
-    width: 500px;
-    padding: 80px;
-    border-radius: 10px;
-    background-color: #cb8535;
-}

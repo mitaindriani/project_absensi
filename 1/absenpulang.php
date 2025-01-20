@@ -31,11 +31,11 @@
             <i class='bx bxs-user-circle'></i>
             <a href="absenmasuk.php">Absen Masuk</a>
           </li>
-          <li>
+          <li class="active">
             <i class='bx bxs-message-dots'></i>
             <a href="absenpulang.php">Absen Pulang</a>
           </li>
-            <li class="active">
+            <li>
             <i class='bx bxs-bar-chart-alt-2'></i>
             <a href="datasiswa.php">Data Absensi</a>
           </li>
@@ -52,16 +52,10 @@
     </div>
     <div class="content">
     <div class="absen-box">
-        <h1>Data Absen Siswa</h1>
+        <h1>Absen Pulang SMKN 1 Kepanjen</h1>
         <div class="subject_buttons">
-            <button onclick="location.href='listmasuk.php'">Absen Masuk</button>
-            <button onclick="location.href='listpulang.php'">Absen Pulang</button>
-        </div>
-        <br>
-        <h1>Data Absen Guru</h1>
-        <div class="subject_buttons">
-            <button onclick="location.href='LIST-M-GURU.php'">Absen Masuk</button>
-            <button onclick="location.href='LIST-P-GURU.php'">Absen Pulang</button>
+            <button onclick="location.href='GURUPULANG.php'">Absen Guru</button>
+            <button onclick="location.href='formpulang.php'">Absen Siswa</button>
         </div>
     </div>
 </div>
@@ -77,7 +71,6 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  /* Menambahkan posisi relatif untuk pseudo-element */
   overflow: hidden; /* Menyembunyikan overflow */
 }
 </style>

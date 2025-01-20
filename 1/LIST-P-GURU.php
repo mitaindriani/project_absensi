@@ -69,7 +69,7 @@ p {
       </div>
     </div>
 <header class="form-control">
-<h3>List Absen Masuk Siswa</h3>
+<h3>List Absen Pulang Guru</h3>
 </header><br>
 <nav class="position-absolute top-10 start-50 translate-middle">
 <a href="datasiswa.php" class="btn btn-primary btn-md">Kembali</a>
@@ -79,27 +79,23 @@ p {
     <table class="table table-striped table-hover table-bordered mt-5">
     <thead class="table-dark">
 <th>No</th>
+<th>Id Guru</th>
 <th>Nama</th>
-<th>Kelas</th>
-<th>Jurusan</th>
-<th>Mapel</th>
 <th>Tanggal</th>
 <th>Jam</th>
 <th>Tindakan</th>
 </thead>
 <tbody>
 <?php
-$sql = "SELECT * FROM tb_absen";
+$sql = "SELECT * FROM tb_guru";
 $query = mysqli_query($conn, $sql);
 $i = 1;
 ?>
 <?php while ($siswa = mysqli_fetch_array($query)) : ?>
 <tr>
 <td><?php echo $i ?></td>
+<td><?php echo $siswa['id_guru'] ?></td>
 <td><?php echo $siswa['nama'] ?></td>
-<td><?php echo $siswa['kelas'] ?></td>
-<td><?php echo $siswa['jurusan'] ?></td>
-<td><?php echo $siswa['mapel'] ?></td>
 <td><?php echo $siswa['tanggal'] ?></td>
 <td><?php echo $siswa['time'] ?></td>
 <td>
@@ -116,7 +112,7 @@ $i = 1;
 <?php endwhile; ?>
 </tbody>
 </table>
-<p>Total Siswa Absen: <?php echo mysqli_num_rows($query) ?></p>
+<p>Total Guru Absen: <?php echo mysqli_num_rows($query) ?></p>
 </div>
 </body>
 </html>

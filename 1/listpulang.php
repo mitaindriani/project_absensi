@@ -9,6 +9,22 @@
   <link rel="stylesheet" href="style.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+<style>
+ .container {
+    background-color: #D9EAFD;
+}
+body{
+  background-color:#D9EAFD;
+}
+.form-control{
+  background-color:#D9EAFD;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #000;
+}
+</style>
 <body>
   <div class="container">
     <input type="checkbox" id="click">
@@ -20,7 +36,7 @@
     <div class="sidenav">
       <div class="logo">
         <h2>SMKN 1 KEPANJEN</h2><div class="right_area">
-      </div><img src="kanesa.png" width="50px" height="50px">
+      </div><img src="logo.png" width="50px" height="50px">
       </div>
 
       <div class="icon_items">
@@ -31,15 +47,15 @@
           </li>
           <li>
             <i class='bx bxs-user-circle'></i>
-            <a href="formabsen.php">Absen Masuk</a>
+            <a href="absenmasuk.php">Absen Masuk</a>
           </li>
           <li>
             <i class='bx bxs-message-dots'></i>
-            <a href="formpulang.php">Absen Pulang</a>
+            <a href="absenpulang.php">Absen Pulang</a>
           </li>
             <li class="active">
             <i class='bx bxs-bar-chart-alt-2'></i>
-            <a href="datasiswa">Data Siswa</a>
+            <a href="datasiswa">Data Absensi</a>
           </li>
           <li>
             <i class='bx bxs-cog'></i>
@@ -67,7 +83,7 @@
 <th>Kelas</th>
 <th>Jurusan</th>
 <th>Tanggal</th>
-<th>Time</th>
+<th>Jam</th>
 <th>Tindakan</th>
 </thead>
 <tbody>

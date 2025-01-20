@@ -9,6 +9,14 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+<style>
+ .container {
+    background-color: #D9EAFD;
+}
+body{
+  background-color:#D9EAFD;
+}
+</style>
 <body>
   <div class="container">
     <input type="checkbox" id="click">
@@ -20,7 +28,7 @@
     <div class="sidenav">
       <div class="logo">
         <h2>SMKN 1 KEPANJEN</h2>
-        <img src="kanesa.png" width="50px" height="50px">
+        <img src="logo.png" width="50px" height="50px">
       </div>
 
       <div class="icon_items">
@@ -31,15 +39,15 @@
           </li>
           <li class="active">
             <i class='bx bxs-user-circle'></i>
-            <a href="formabsen.php">Absen Masuk</a>
+            <a href="absenmasuk.php">Absen Masuk</a>
           </li>
           <li>
             <i class='bx bxs-message-dots'></i>
-            <a href="formpulang.php">Absen Pulang</a>
+            <a href="absenpulang.php">Absen Pulang</a>
           </li>
             <li>
             <i class='bx bxs-bar-chart-alt-2'></i>
-            <a href="datasiswa.php">Data Siswa</a>
+            <a href="datasiswa.php">Data Absensi</a>
           </li>
           <li>
             <i class='bx bxs-cog'></i>
@@ -53,11 +61,11 @@
       </div>
     </div>
     <div class="content">
-      <header class="form-control">
-        <h3>Absen Masuk</h3>
+      <header >
+        <h1>Absen Masuk Siswa</h1>
       </header>
       <div class="w-50 mx-auto border p-2 mt-1">
-        <form action="prosesmasuk.php" method="POST">
+        <form action="prosespulang.php" method="POST">
           <fieldset>
             <div class="mb-3">
               <ol for="nama">Nama:</ol>
@@ -99,12 +107,12 @@
                 <input type="date" name="tanggal" class="form-control" required />
                 </div>
                 <div class="mb-3">
-                <ol for="time">Time:</ol>
+                <ol for="time">Jam:</ol>
                 <input type="time" name="time" class="form-control" required />
                 </div>
                 <input type="submit" value="Absen" name="daftar" class="btn btn-success mt-2" /></p>
                 </fieldset>
           </form>
-    </div>
 </body>
 </html>
+            

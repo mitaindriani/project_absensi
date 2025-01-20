@@ -12,8 +12,8 @@
 <body>
     <header class="text-center">
         <div class="container">
-            <img src="kanesa.png" alt="Logo SMKN 1 Kepanjen" class="img-fluid mb-3">
-            <h3>List Absen Pulang</h3>
+            <img src="logo.png" alt="Logo SMKN 1 Kepanjen" class="img-fluid mb-3">
+            <h3>List Absen Masuk</h3>
         </div>
     </header>
 
@@ -28,14 +28,15 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Kelas</th>
+                    <th>Mapel</th>
                     <th>Jurusan</th>
                     <th>Tanggal</th>
-                    <th>Waktu</th>
+                    <th>Jam</th>
                 </tr>
             </thead>
             <tbody>
          <?php
-            $sql = "SELECT * FROM tb_pulang";
+            $sql = "SELECT * FROM tb_absen";
             $query = mysqli_query($conn, $sql);
             $i = 1;
              ?>
@@ -45,6 +46,7 @@
                     <td><?php echo $i ?> </td>
                     <td><?php echo $siswa['nama'] ?></td>
                     <td><?php echo $siswa['kelas'] ?></td>
+                    <td><?php echo $siswa['mapel'] ?></td>
                     <td><?php echo $siswa['jurusan'] ?></td>
                     <td><?php echo $siswa['tanggal'] ?></td>
                     <td><?php echo $siswa['time'] ?></td>

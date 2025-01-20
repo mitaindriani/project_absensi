@@ -115,7 +115,7 @@ body::before {
 <body>
 
 <div class="container">
-  <img src="kanesa.png" alt="Logo" class="logo"> 
+  <img src="logo.png" alt="Logo" class="logo"> 
   <h2 class="title">Register</h2> 
 
   <form method="post" action="">

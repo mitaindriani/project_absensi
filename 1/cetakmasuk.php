@@ -12,8 +12,8 @@
 <body>
     <header class="text-center">
         <div class="container">
-            <img src="kanesa.png" alt="Logo SMKN 1 Kepanjen" class="img-fluid mb-3">
-            <h3>List Absen Pulang</h3>
+            <img src="logo.png" alt="Logo SMKN 1 Kepanjen" class="img-fluid mb-3">
+            <h3>List Absen Masuk</h3>
         </div>
     </header>
 
@@ -31,7 +31,7 @@
                     <th>Mapel</th>
                     <th>Jurusan</th>
                     <th>Tanggal</th>
-                    <th>Waktu</th>
+                    <th>Jam</th>
                 </tr>
             </thead>
             <tbody>

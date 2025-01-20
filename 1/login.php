@@ -116,7 +116,7 @@ body::before {
 <body>
 
 <div class="container">
-  <img src="kanesa.png" class="logo">
+  <img src="logo.png" class="logo">
   <h2 class="title">Login</h2> 
 
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"> 

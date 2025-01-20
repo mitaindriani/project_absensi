@@ -5,7 +5,7 @@ include("conn.php");
 $id = $_GET['id'];
 
 // Ambil data siswa berdasarkan ID
-$sql = "SELECT * FROM tb_absen WHERE id = $id";
+$sql = "SELECT * FROM tb_pulang WHERE id = $id";
 $query = mysqli_query($conn, $sql);
 $siswa = mysqli_fetch_array($query);
 
@@ -20,22 +20,35 @@ if (!$siswa) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Side Navigation Menu</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+<style>
+ .container {
+    background-color: #D9EAFD;
+}
+body{
+  background-color:#D9EAFD;
+}
+.form-control{
+  background-color:#FFFFFF;
+}
+</style>
+
+</style>
 <body>
   <div class="container">
     <input type="checkbox" id="click">
-    <ol for="click">
+    <label for="click">
       <i class='menu-btn bx bx-menu'></i>
       <i class='close-btn bx bx-x-circle'></i>
-    </ol>
+    </label>
 
     <div class="sidenav">
       <div class="logo">
-        <h2>SMKN 1 KEPANJEN</h2><div class="right_area">
-      </div><img src="kanesa.png" width="50px" height="50px">
+        <h2>SMKN 1 KEPANJEN</h2>
+        <img src="logo.png" width="50px" height="50px">
       </div>
 
       <div class="icon_items">
@@ -46,15 +59,15 @@ if (!$siswa) {
           </li>
           <li>
             <i class='bx bxs-user-circle'></i>
-            <a href="formabsen.php">Absen Masuk</a>
+            <a href="absenmasuk.php">Absen Masuk</a>
           </li>
           <li>
             <i class='bx bxs-message-dots'></i>
-            <a href="formpulang.php">Absen Pulang</a>
+            <a href="absenpulang.php">Absen Pulang</a>
           </li>
             <li class="active">
             <i class='bx bxs-bar-chart-alt-2'></i>
-            <a href="datasiswa.php">Data Siswa</a>
+            <a href="datasiswa.php">Data Absensi</a>
           </li>
           <li>
             <i class='bx bxs-cog'></i>
@@ -67,16 +80,19 @@ if (!$siswa) {
         </ul>
       </div>
     </div>
-    <div class="container mt-5">
-    <h2>Edit Data Siswa</h2>
+    <div class="content">
+    <header >
+        <h1>Edit Absen Pulang</h1>
+        </header>
+      <div class="w-50 mx-auto border p-2 mt-1">
     <form action="update-pulang.php" method="POST">
         <input type="hidden" name="id" value="<?php echo $siswa['id']; ?>">
         <div class="mb-3">
-            <ol for="nama" class="form-control">Nama</ol>
+            <ol for="nama" >Nama</ol>
             <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $siswa['nama']; ?>" required>
         </div>
         <div class="mb-3">
-              <ol for="kelas" class="form-control">Kelas</ol>
+              <ol for="kelas">Kelas</ol>
               <select class="form-select" id="kelas" name="kelas" required>
                   <option value="X" <?php echo ($siswa['kelas'] == 'X') ? 'selected' : ''; ?>>X</option>
                   <option value="XI" <?php echo ($siswa['kelas'] == 'XI') ? 'selected' : ''; ?>>XI</option>
@@ -84,7 +100,7 @@ if (!$siswa) {
               </select>
         </div>
         <div class="mb-3">
-              <ol for="jurusan" class="form-control">Jurusan</ol>
+              <ol for="jurusan">Jurusan</ol>
               <select class="form-select" id="jurusan" name="jurusan" required>
                   <option value="rpl" <?php echo ($siswa['jurusan'] == 'rpl') ? 'selected' : ''; ?>>RPL</option>
                   <option value="tkj" <?php echo ($siswa['jurusan'] == 'tkj') ? 'selected' : ''; ?>>TKJ</option>
@@ -94,16 +110,32 @@ if (!$siswa) {
               </select>
         </div>
         <div class="mb-3">
-            <ol for="tanggal" class="form-control">Tanggal</ol>
+            <ol for="tanggal">Tanggal</ol>
             <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?php echo $siswa['tanggal']; ?>" required>
         </div>
         <div class="mb-3">
-            <ol for="time" class="form-control">Time</ol>
+            <ol for="time">Jam</ol>
             <input type="time" class="form-control" id="time" name="time" value="<?php echo $siswa['time']; ?>" required>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
-        <a href="listpulang.php" class="btn btn-secondary">Kembali</a>
+        <a href="listmasuk.php" class="btn btn-secondary">Kembali</a>
     </form>
 </div>
 </body>
+<style>
+.container .sidenav {
+    
+    width: 115px;
+    height: 100vh;
+    overflow: hidden;
+    position: fixed;
+    padding: 40px 16px;
+    background-color: #000;
+    transition: width 0.6s, left 0.6s;
+    left: -20px;
+    bottom: 0px;
+    /* Adjust the value for desired leftward shift */
+}
+</style>
+
 </html>

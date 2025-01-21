@@ -5,7 +5,7 @@ include("conn.php");
 $id = $_GET['id'];
 
 // Ambil data siswa berdasarkan ID
-$sql = "SELECT * FROM tb_absen WHERE id = $id";
+$sql = "SELECT * FROM tb_guru WHERE id = $id";
 $query = mysqli_query($conn, $sql);
 $siswa = mysqli_fetch_array($query);
 
@@ -85,40 +85,15 @@ body{
         <h1>Edit Absen Masuk</h1>
         </header>
       <div class="w-50 mx-auto border p-2 mt-1">
-    <form action="update.php" method="POST">
+    <form action="PRO-EDIT-MASUK.php" method="POST">
         <input type="hidden" name="id" value="<?php echo $siswa['id']; ?>">
+        <div class="mb-3">
+            <ol for="id_guru" >ID Guru</ol>
+            <input type="text" class="form-control" id="id_guru" name="id_guru" value="<?php echo $siswa['id_guru']; ?>" required>
+        </div>
         <div class="mb-3">
             <ol for="nama" >Nama</ol>
             <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $siswa['nama']; ?>" required>
-        </div>
-        <div class="mb-3">
-              <ol for="kelas">Kelas</ol>
-              <select class="form-select" id="kelas" name="kelas" required>
-                  <option value="X" <?php echo ($siswa['kelas'] == 'X') ? 'selected' : ''; ?>>X</option>
-                  <option value="XI" <?php echo ($siswa['kelas'] == 'XI') ? 'selected' : ''; ?>>XI</option>
-                  <option value="XII" <?php echo ($siswa['kelas'] == 'XII') ? 'selected' : ''; ?>>XII</option>
-              </select>
-        </div>
-        <div class="mb-3">
-              <ol for="mapel">Mapel</ol>
-              <select class="form-select" id="mapel" name="mapel" required>
-                  <option value="mtk" <?php echo ($siswa['mapel'] == 'mtk') ? 'selected' : ''; ?>>MTK</option>
-                  <option value="big" <?php echo ($siswa['mapel'] == 'big') ? 'selected' : ''; ?>>BIG</option>
-                  <option value="ipa" <?php echo ($siswa['mapel'] == 'ipa') ? 'selected' : ''; ?>>IPA</option>
-                  <option value="bin" <?php echo ($siswa['mapel'] == 'bin') ? 'selected' : ''; ?>>BIN</option>
-                  <option value="pkn" <?php echo ($siswa['mapel'] == 'pkn') ? 'selected' : ''; ?>>PKN</option>
-                  <option value="sejarah" <?php echo ($siswa['mapel'] == 'sejarah') ? 'selected' : ''; ?>>SEJARAH</option>
-              </select>
-        </div>
-        <div class="mb-3">
-              <ol for="jurusan">Jurusan</ol>
-              <select class="form-select" id="jurusan" name="jurusan" required>
-                  <option value="rpl" <?php echo ($siswa['jurusan'] == 'rpl') ? 'selected' : ''; ?>>RPL</option>
-                  <option value="tkj" <?php echo ($siswa['jurusan'] == 'tkj') ? 'selected' : ''; ?>>TKJ</option>
-                  <option value="tkr" <?php echo ($siswa['jurusan'] == 'tkr') ? 'selected' : ''; ?>>TKR</option>
-                  <option value="tbsm" <?php echo ($siswa['jurusan'] == 'tbsm') ? 'selected' : ''; ?>>TBSM</option>
-                  <option value="tei" <?php echo ($siswa['jurusan'] == 'tei') ? 'selected' : ''; ?>>TEI</option>
-              </select>
         </div>
         <div class="mb-3">
             <ol for="tanggal">Tanggal</ol>
@@ -129,7 +104,7 @@ body{
             <input type="time" class="form-control" id="time" name="time" value="<?php echo $siswa['time']; ?>" required>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
-        <a href="listmasuk.php" class="btn btn-secondary">Kembali</a>
+        <a href="LIST-M-GURU.php" class="btn btn-secondary">Kembali</a>
     </form>
 </div>
 </body>

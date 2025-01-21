@@ -7,10 +7,10 @@ if (isset($_POST['daftar'])) {
   $id_guru = htmlspecialchars($_POST['id_guru']);
   $nama = htmlspecialchars($_POST['nama']);
   $tanggal = htmlspecialchars($_POST['tanggal']);
-  $jam = htmlspecialchars($_POST['jam']);
+  $time = htmlspecialchars($_POST['time']);
   // Simpan data ke database (tanpa gambar)
-  $sql = "INSERT INTO tb_guru (id_guru, nama, tanggal, jam)
-          VALUES ('$id_guru', '$nama', '$tanggal', '$jam')";
+  $sql = "INSERT INTO tb_guru2 (id_guru, nama, tanggal, time)
+          VALUES ('$id_guru', '$nama', '$tanggal', '$time')";
 
   $result = $conn->query($sql);
 

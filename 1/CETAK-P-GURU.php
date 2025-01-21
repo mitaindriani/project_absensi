@@ -26,17 +26,15 @@
             <thead>
                 <tr>
                     <th>No</th>
+                    <th>ID Guru</th>
                     <th>Nama</th>
-                    <th>Kelas</th>
-                    <th>Mapel</th>
-                    <th>Jurusan</th>
                     <th>Tanggal</th>
                     <th>Jam</th>
                 </tr>
             </thead>
             <tbody>
          <?php
-            $sql = "SELECT * FROM tb_absen";
+            $sql = "SELECT * FROM tb_guru";
             $query = mysqli_query($conn, $sql);
             $i = 1;
              ?>
@@ -44,10 +42,8 @@
              <?php while ($siswa = mysqli_fetch_array($query)) : ?>
                  <tr>
                     <td><?php echo $i ?> </td>
+                    <td><?php echo $siswa['id_guru'] ?></td>
                     <td><?php echo $siswa['nama'] ?></td>
-                    <td><?php echo $siswa['kelas'] ?></td>
-                    <td><?php echo $siswa['mapel'] ?></td>
-                    <td><?php echo $siswa['jurusan'] ?></td>
                     <td><?php echo $siswa['tanggal'] ?></td>
                     <td><?php echo $siswa['time'] ?></td>
 

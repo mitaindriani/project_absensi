@@ -36,7 +36,7 @@ p {
     <div class="sidenav">
       <div class="logo">
         <h2>SMKN 1 KEPANJEN</h2><div class="right_area">
-      </div><img src="logo.png" width="50px" height="50px">
+      </div><img src="kanesa.png" width="50px" height="50px">
       </div>
 
       <div class="icon_items">
@@ -73,7 +73,7 @@ p {
 </header><br>
 <nav class="position-absolute top-10 start-50 translate-middle">
 <a href="datasiswa.php" class="btn btn-primary btn-md">Kembali</a>
-<a href="cetakmasuk.php" class="btn btn-success">Cetak</a>
+<a href="CETAK-M-GURU.php" class="btn btn-success">Cetak</a>
 </nav>
 <div class="container">
     <table class="table table-striped table-hover table-bordered mt-5">
@@ -101,10 +101,10 @@ $i = 1;
 <td>
 <div class='row'>   
 <div class='col d-flex justify-content-center'>
-<a href ="form-edit-masuk.php?id=<?php echo $siswa['id']?>" class='btn btn-sm btn-warning'>Edit</a>
+<a href ="EDIT-M-GURU.php?id=<?php echo $siswa['id']?>" class='btn btn-sm btn-warning'>Edit</a>
 </div>
 <div class='col d-flex justify-content-center'>
-<a href ="hapusmasuk.php?id=<?php echo $siswa['id']?>" class='btn btn-sm btn-danger'>Hapus</a>
+<a href ="HAPUS-M-GURU.php?id=<?php echo $siswa['id']?>" class='btn btn-sm btn-danger'>Hapus</a>
 </div>
 </td>
 </tr>

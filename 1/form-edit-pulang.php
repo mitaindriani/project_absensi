@@ -48,7 +48,7 @@ body{
     <div class="sidenav">
       <div class="logo">
         <h2>SMKN 1 KEPANJEN</h2>
-        <img src="logo.png" width="50px" height="50px">
+        <img src="kanesa.png" width="50px" height="50px">
       </div>
 
       <div class="icon_items">

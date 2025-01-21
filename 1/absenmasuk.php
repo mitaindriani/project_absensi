@@ -18,7 +18,7 @@
     <div class="sidenav">
       <div class="logo">
         <h2>SMKN 1 KEPANJEN</h2><div class="right_area">
-      </div><img src="logo.png" width="50px" height="50px">
+      </div><img src="kanesa.png" width="50px" height="50px">
       </div>
 
       <div class="icon_items">

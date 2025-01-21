@@ -12,7 +12,7 @@
 <body>
     <header class="text-center">
         <div class="container">
-            <img src="logo.png" alt="Logo SMKN 1 Kepanjen" class="img-fluid mb-3">
+            <img src="kanesa.png" alt="Logo SMKN 1 Kepanjen" class="img-fluid mb-3">
             <h3>List Absen Masuk</h3>
         </div>
     </header>

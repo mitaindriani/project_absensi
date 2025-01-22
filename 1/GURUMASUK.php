@@ -65,7 +65,7 @@ body{
         <h1>Absen Masuk</h1>
       </header>
       <div class="w-50 mx-auto border p-2 mt-1">
-        <form action="PROSES_GURU.php" method="POST">
+        <form action="PROSES_GURU.php" method="POST" enctype="multipart/form-data">
           <fieldset>
             <div class="mb-3">
               <ol for="id_guru">ID Guru:</ol>
@@ -83,6 +83,10 @@ body{
                 <ol for="time">Jam:</ol>
                 <input type="time" name="time" class="form-control" required />
                 </div>
+                <div class="mb-3">
+    <ol for="foto">Foto Guru:</ol>
+    <input type="file" class="form-control" id="foto" name="foto">
+  </div>
                 <input type="submit" value="Absen" name="daftar" class="btn btn-success mt-2" /></p>
                 <a href="absenmasuk.php" class="btn btn-primary btn-md">Kembali</a>
                 </fieldset>

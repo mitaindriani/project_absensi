@@ -8,15 +8,20 @@ if (isset($_POST['daftar'])) {
   $nama = htmlspecialchars($_POST['nama']);
   $tanggal = htmlspecialchars($_POST['tanggal']);
   $time = htmlspecialchars($_POST['time']);
+  $foto = $_FILES["foto"]["name"]; // Get the file name
+  $tmp_foto = $_FILES["foto"]["tmp_name"]; // Get the temporary file path
+
+  // Move the uploaded file to a designated folder (replace 'images' with your desired folder)
+  move_uploaded_file($tmp_foto, "images/".$foto);
   // Simpan data ke database (tanpa gambar)
-  $sql = "INSERT INTO tb_guru (id_guru, nama, tanggal, time)
-          VALUES ('$id_guru', '$nama', '$tanggal', '$time')";
+  $sql = "INSERT INTO tb_guru (id_guru, nama, tanggal, time, foto)
+          VALUES ('$id_guru', '$nama', '$tanggal', '$time', '$foto')";
 
   $result = $conn->query($sql);
 
   if ($result) {
     // kalau berhasil alihkan ke halaman list-siswa.php
-    header('Location: datasiswa.php');
+    header('Location: LIST-M-GURU.php');
     } else {
     // kalau gagal tampilkan pesan
     die("Gagal menyimpan perubahan...");

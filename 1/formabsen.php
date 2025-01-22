@@ -65,7 +65,7 @@ body{
         <h1>Absen Masuk Siswa</h1>
       </header>
       <div class="w-50 mx-auto border p-2 mt-1">
-        <form action="prosespulang.php" method="POST">
+        <form action="prosesmasuk.php" method="POST" enctype="multipart/form-data">
           <fieldset>
             <div class="mb-3">
               <ol for="nama">Nama:</ol>
@@ -84,12 +84,12 @@ body{
               <ol for="mapel">Mapel:</ol>
               <select name="mapel" id="mapel" class="form-select" required>
                 <option value="">Pilih Mapel</option>   
-                <option value="mtk">MTK</option>
-                <option value="big">BING</option>
-                <option value="ipa">IPA</option>
-                 <option value="bin">BIN</option>
-                  <option value="pkn">PKN</option> 
-                  <option value="sejarah">SEJARAH</option>
+                <option value="MTK">MTK</option>
+                <option value="BING">BING</option>
+                <option value="IPA">IPA</option>
+                 <option value="BIN">BIN</option>
+                  <option value="PKN">PKN</option> 
+                  <option value="SEJARAH">SEJARAH</option>
               </select>
             </div>
             <div class="mb-3">
@@ -97,10 +97,10 @@ body{
               <select name="jurusan" id="jurusan" class="form-select" required>
                 <option value="">Pilih Jurusan</option>   
                 <option value="rpl">RPL</option>
-                <option value="tkj">Tkj</option>
-                <option value="tkr">Tkr</option>
-                <option value="tbsm">Tbsm</option>
-                <option value="tei">Tei</option>
+                <option value="tkj">TKJ</option>
+                <option value="tkr">TKR</option>
+                <option value="tbsm">TBSM</option>
+                <option value="tei">TEI</option>
                 </select></div>
                 <div class="mb-3">
                 <ol for="tanggal">Tanggal:</ol>
@@ -110,10 +110,14 @@ body{
                 <ol for="time">Jam:</ol>
                 <input type="time" name="time" class="form-control" required />
                 </div>
+                <div class="mb-3">
+    <ol for="foto">Foto Siswa:</ol>
+    <input type="file" class="form-control" id="foto" name="foto">
+  </div>
                 <input type="submit" value="Absen" name="daftar" class="btn btn-success mt-2" /></p>
                 <a href="absenmasuk.php" class="btn btn-primary btn-md">Kembali</a>
                 </fieldset>
           </form>
+        
 </body>
 </html>
-            

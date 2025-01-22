@@ -16,7 +16,7 @@ if (isset($_POST['daftar'])) {
 
   if ($result) {
     // kalau berhasil alihkan ke halaman list-siswa.php
-    header('Location: datasiswa.php');
+    header('Location: LIST-P-GURU.php');
     } else {
     // kalau gagal tampilkan pesan
     die("Gagal menyimpan perubahan...");

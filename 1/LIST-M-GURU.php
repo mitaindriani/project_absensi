@@ -83,6 +83,7 @@ p {
 <th>Nama</th>
 <th>Tanggal</th>
 <th>Jam</th>
+<th>Foto</th>
 <th>Tindakan</th>
 </thead>
 <tbody>
@@ -98,6 +99,7 @@ $i = 1;
 <td><?php echo $siswa['nama'] ?></td>
 <td><?php echo $siswa['tanggal'] ?></td>
 <td><?php echo $siswa['time'] ?></td>
+<td><img src="images/<?php echo $siswa['foto']; ?>" width="150px" height="100px"></td>
 <td>
 <div class='row'>   
 <div class='col d-flex justify-content-center'>

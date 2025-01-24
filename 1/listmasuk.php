@@ -103,14 +103,14 @@ $i = 1;
 <td><?php echo $siswa['mapel'] ?></td>
 <td><?php echo $siswa['tanggal'] ?></td>
 <td><?php echo $siswa['time'] ?></td>
-<td><img src="images/<?php echo $siswa['foto']; ?>" width="150px" height="100px"></td>
+<td><img src="images/<?= $siswa['foto']; ?>" width="150"></td>
 <td>
 <div class='row'>   
 <div class='col d-flex justify-content-center'>
 <a href ="form-edit-masuk.php?id=<?php echo $siswa['id']?>" class='btn btn-sm btn-warning'>Edit</a>
 </div>
 <div class='col d-flex justify-content-center'>
-<a href ="hapusmasuk.php?id=<?php echo $siswa['id']?>" class='btn btn-sm btn-danger'>Hapus</a>
+<a href="hapusmasuk.php?id=<?= $siswa['id']; ?>" onclick="return confirm('apakah anda yakin?');" class='btn btn-sm btn-danger'>hapus</a>
 </div>
 </td>
 </tr>

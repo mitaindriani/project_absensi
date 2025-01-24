@@ -1,4 +1,4 @@
-<?php include("conn.php"); ?>
+<?php include("conn.php");?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +16,12 @@
 body{
   background-color:#D9EAFD;
 }
+.button-container {
+    text-align: center; /* Center buttons horizontally */
+  }
+  .button-container button {
+    margin-right: 10px; /* Add spacing between buttons */
+  }
 </style>
 <body>
   <div class="container">
@@ -104,20 +110,19 @@ body{
                 </select></div>
                 <div class="mb-3">
                 <ol for="tanggal">Tanggal:</ol>
-                <input type="date" name="tanggal" class="form-control" required />
+                <input type="text" name="tanggal" class="form-control" value="<?php echo date('d/m/Y'); ?>" readonly />
                 </div>
                 <div class="mb-3">
                 <ol for="time">Jam:</ol>
-                <input type="time" name="time" class="form-control" required />
+                <input type="text" name="time" class="form-control" value="<?php echo date('H:i:s'); ?>" readonly/>
                 </div>
                 <div class="mb-3">
     <ol for="foto">Foto Siswa:</ol>
     <input type="file" class="form-control" id="foto" name="foto">
   </div>
-                <input type="submit" value="Absen" name="daftar" class="btn btn-success mt-2" /></p>
-                <a href="absenmasuk.php" class="btn btn-primary btn-md">Kembali</a>
+  <button type="submit" value="Absen" name="daftar" class="btn btn-primary">Absen</button>
+  <a href="absenmasuk.php" class="btn btn-secondary">Kembali</a>
                 </fieldset>
           </form>
-        
 </body>
 </html>

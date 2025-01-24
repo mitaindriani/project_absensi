@@ -30,6 +30,7 @@
                     <th>Nama</th>
                     <th>Tanggal</th>
                     <th>Jam</th>
+                    <th>Foto</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,7 +47,7 @@
                     <td><?php echo $siswa['nama'] ?></td>
                     <td><?php echo $siswa['tanggal'] ?></td>
                     <td><?php echo $siswa['time'] ?></td>
-
+                    <td><img src="images/<?php echo $siswa['foto']; ?>" width="150px" height="100px"></td>
                 </tr>
                 <?php $i++ ?>
                 <?php endwhile; ?>

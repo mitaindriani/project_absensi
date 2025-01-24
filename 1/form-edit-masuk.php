@@ -122,11 +122,15 @@ body{
         </div>
         <div class="mb-3">
             <ol for="tanggal">Tanggal</ol>
-            <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?php echo $siswa['tanggal']; ?>" required>
+            <input type="text" class="form-control" id="tanggal" name="tanggal" value="<?php echo date('d/m/Y'); ?>" readonly>
         </div>
         <div class="mb-3">
             <ol for="time">Jam</ol>
-            <input type="time" class="form-control" id="time" name="time" value="<?php echo $siswa['time']; ?>" required>
+            <input type="text" class="form-control" id="time" name="time" value="<?php echo date('H:i:s'); ?>" readonly>
+        </div>
+        <div class="mb-3">
+              <ol for="foto">Foto Siswa:</ol>
+              <input type="hidden" name="foto" value="<?php echo $siswa['foto']; ?>">
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
         <a href="listmasuk.php" class="btn btn-secondary">Kembali</a>

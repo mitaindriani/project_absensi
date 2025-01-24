@@ -6,8 +6,8 @@ $id = $_POST['id'];
 $nama = $_POST['nama'];
 $kelas = $_POST['kelas'];
 $jurusan = $_POST['jurusan'];
-$tanggal = $_POST['tanggal'];
-$time = $_POST['time'];
+$tanggal = date('Y-m-d');
+$time = date('H:i:s');
 
 // Update data siswa di database
 $sql = "UPDATE tb_pulang SET nama='$nama', kelas='$kelas', jurusan='$jurusan', tanggal='$tanggal', time='$time' WHERE id=$id";

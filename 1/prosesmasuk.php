@@ -8,8 +8,8 @@ if (isset($_POST['daftar'])) {
   $kelas = htmlspecialchars($_POST['kelas']);
   $jurusan = htmlspecialchars($_POST['jurusan']);
   $mapel = htmlspecialchars($_POST['mapel']);
-  $tanggal = htmlspecialchars($_POST['tanggal']);
-  $time = htmlspecialchars($_POST['time']);
+  $tanggal = date('Y-m-d');
+  $time = date('H:i:s');
   $foto = $_FILES["foto"]["name"]; // Get the file name
   $tmp_foto = $_FILES["foto"]["tmp_name"]; // Get the temporary file path
 
@@ -24,12 +24,13 @@ if (isset($_POST['daftar'])) {
 
   if ($result) {
     // kalau berhasil alihkan ke halaman list-siswa.php
-    header('Location: listmasuk.php');
+    echo "<script>
+            alert('data berhasil ditambahkan');
+            document.location.href = 'listmasuk.php';
+         </script>";
   } else {
     // kalau gagal tampilkan pesan
-    die("Gagal menyimpan perubahan...");
+    echo "data gagal ditambahkan!";
   }
-} else {
-  die("Akses dilarang...");
 }
 ?>

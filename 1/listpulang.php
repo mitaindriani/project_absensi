@@ -106,8 +106,7 @@ $i = 1;
 <a href ="form-edit-pulang.php?id=<?php echo $siswa['id']?>" class='btn btn-sm btn-warning'>Edit</a>
 </div>
 <div class='col d-flex justify-content-center'>
-<a href ="hapuspulang.php?id=<?php echo $siswa['id']?>" class='btn btn-sm btn-danger'>Hapus</a>
-</div>
+<a href="hapuspulang.php?id=<?= $siswa['id']; ?>" onclick="return confirm('apakah anda yakin?');" class='btn btn-sm btn-danger'>hapus</a></div>
 </td>
 </tr>
 <?php $i++ ?>

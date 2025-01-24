@@ -7,8 +7,8 @@ if (isset($_POST['daftar'])) {
   $nama = htmlspecialchars($_POST['nama']);
   $kelas = htmlspecialchars($_POST['kelas']);
   $jurusan = htmlspecialchars($_POST['jurusan']);
-  $tanggal = htmlspecialchars($_POST['tanggal']);
-  $time = htmlspecialchars($_POST['time']);
+  $tanggal = date('Y-m-d');
+$time = date('H:i:s');
   // Simpan data ke database (tanpa gambar)
   $sql = "INSERT INTO tb_pulang (nama, kelas, jurusan , tanggal, time)
           VALUES ('$nama', '$kelas', '$jurusan', '$tanggal', '$time')";
@@ -17,7 +17,10 @@ if (isset($_POST['daftar'])) {
 
   if ($result) {
     // kalau berhasil alihkan ke halaman list-siswa.php
-    header('Location: listpulang.php');
+    echo "<script>
+            alert('data berhasil ditambahkan');
+            document.location.href = 'listpulang.php';
+         </script>";
     } else {
     // kalau gagal tampilkan pesan
     die("Gagal menyimpan perubahan...");

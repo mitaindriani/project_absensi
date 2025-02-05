@@ -5,8 +5,8 @@ include("conn.php");
 $id = $_POST['id'];
 $id_guru = $_POST['id_guru'];
 $nama = $_POST['nama'];
-$tanggal = date('Y-m-d');
-$time = date('H:i:s');
+$tanggal = $_POST['tanggal'];
+$time = $_POST['time'];
 
 // Update data siswa di database
 $sql = "UPDATE tb_guru2 SET id_guru='$id_guru', nama='$nama', tanggal='$tanggal', time='$time' WHERE id=$id";

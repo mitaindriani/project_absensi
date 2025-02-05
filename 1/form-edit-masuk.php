@@ -1,5 +1,5 @@
 <?php
-include("conn.php");
+include("conn.php"); date_default_timezone_set('Asia/Jakarta');
 
 // Ambil ID dari URL
 $id = $_GET['id'];
@@ -14,132 +14,199 @@ if (!$siswa) {
 }
 ?>
 
+   
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Side Navigation Menu</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <title>Navbar Example</title>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <style>
+    /* Basic styling for the navbar */
+    nav {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      top:0px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      /* Stay at the top */
+      width: 100%;
+      /* Full width */
+      z-index: 100;
+      /* Ensure it's above other content */
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    nav li {
+      margin-left: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #555;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      margin-right: 10px;
+    }
+
+    .content {
+      padding: 20px;
+      margin-top: 70px;
+      /* Adjust to navbar height + some extra */
+      font-family: sans-serif;
+      background-color: #cadef5;
+      /* Blue background */
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      overflow-y: auto;
+    }
+    .header-title {
+      text-align: center; 
+      margin-top: 20px; 
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.8); 
+      border: none; 
+      border-radius: 15px; 
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+      margin-top: 40px;
+    }
+
+    .form-control {
+      border-radius: 10px; 
+    }
+
+    .btn {
+      border-radius: 10px; 
+    }
+
+    .form-row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .form-row > div {
+            flex: 0 0 auto;
+            width: 33.33%;
+            margin-right: 15px;
+        }
+
+        .form-row > div:last-child {
+            margin-right: 0;
+        }
+  </style>
 </head>
-<style>
- .container {
-    background-color: #D9EAFD;
-}
-body{
-  background-color:#D9EAFD;
-}
-.form-control{
-  background-color:#FFFFFF;
-}
-</style>
 
-</style>
 <body>
-  <div class="container">
-    <input type="checkbox" id="click">
-    <label for="click">
-      <i class='menu-btn bx bx-menu'></i>
-      <i class='close-btn bx bx-x-circle'></i>
-    </label>
-
-    <div class="sidenav">
-      <div class="logo">
-        <h2>SMKN 1 KEPANJEN</h2>
-        <img src="kanesa.png" width="50px" height="50px">
-      </div>
-
-      <div class="icon_items">
-        <ul>
-            <li>
-            <i class='bx bxs-home'></i>
-            <a href="index.html">Home</a>
-          </li>
-          <li>
-            <i class='bx bxs-user-circle'></i>
-            <a href="absenmasuk.php">Absen Masuk</a>
-          </li>
-          <li>
-            <i class='bx bxs-message-dots'></i>
-            <a href="absenpulang.php">Absen Pulang</a>
-          </li>
-            <li class="active">
-            <i class='bx bxs-bar-chart-alt-2'></i>
-            <a href="datasiswa.php">Data Absensi</a>
-          </li>
-          <li>
-            <i class='bx bxs-cog'></i>
-            <a href="#">Setting</a>
-          </li>
-          <li>
-            <i class='bx bx-log-in'></i>
-            <a href="login.php">Logout</a>
-          </li>
-        </ul>
-      </div>
+  <nav>
+    <div class="logo">
+      <img src="kanesa.png" width="50px" height="50px">
+      <h2>SMKN 1 KEPANJEN</h2>
     </div>
+    <ul>
+      <li><a href="index.html"><i class='bx bxs-home'></i> Home</a></li>
+      <li><a href="absenmasuk.php"><i class='bx bxs-user-circle'></i> Absen Masuk</a></li>
+      <li><a href="absenpulang.php"><i class='bx bxs-message-dots'></i> Absen Pulang</a></li>
+      <li><a href="datasiswa.php"><i class='bx bxs-bar-chart-alt-2'></i> Data Absensi</a></li>
+      <li><a href="#"><i class='bx bxs-cog'></i> Setting</a></li>
+      <li><a href="login.php"><i class='bx bx-log-in'></i> Logout</a></li>
+    </ul>
+  </nav>
+
     <div class="content">
-    <header >
+    <div class="card w-50 mx-auto p-4">
+    <header  class="header-title">
         <h1>Edit Absen Masuk</h1>
         </header>
-      <div class="w-50 mx-auto border p-2 mt-1">
-    <form action="update.php" method="POST">
-        <input type="hidden" name="id" value="<?php echo $siswa['id']; ?>">
-        <div class="mb-3">
-            <ol for="nama" >Nama</ol>
-            <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $siswa['nama']; ?>" required>
-        </div>
-        <div class="mb-3">
-              <ol for="kelas">Kelas</ol>
-              <select class="form-select" id="kelas" name="kelas" required>
-                  <option value="X" <?php echo ($siswa['kelas'] == 'X') ? 'selected' : ''; ?>>X</option>
-                  <option value="XI" <?php echo ($siswa['kelas'] == 'XI') ? 'selected' : ''; ?>>XI</option>
-                  <option value="XII" <?php echo ($siswa['kelas'] == 'XII') ? 'selected' : ''; ?>>XII</option>
-              </select>
-        </div>
-        <div class="mb-3">
-              <ol for="mapel">Mapel</ol>
-              <select class="form-select" id="mapel" name="mapel" required>
-                  <option value="mtk" <?php echo ($siswa['mapel'] == 'mtk') ? 'selected' : ''; ?>>MTK</option>
-                  <option value="big" <?php echo ($siswa['mapel'] == 'big') ? 'selected' : ''; ?>>BIG</option>
-                  <option value="ipa" <?php echo ($siswa['mapel'] == 'ipa') ? 'selected' : ''; ?>>IPA</option>
-                  <option value="bin" <?php echo ($siswa['mapel'] == 'bin') ? 'selected' : ''; ?>>BIN</option>
-                  <option value="pkn" <?php echo ($siswa['mapel'] == 'pkn') ? 'selected' : ''; ?>>PKN</option>
-                  <option value="sejarah" <?php echo ($siswa['mapel'] == 'sejarah') ? 'selected' : ''; ?>>SEJARAH</option>
-              </select>
-        </div>
-        <div class="mb-3">
-              <ol for="jurusan">Jurusan</ol>
-              <select class="form-select" id="jurusan" name="jurusan" required>
-                  <option value="rpl" <?php echo ($siswa['jurusan'] == 'rpl') ? 'selected' : ''; ?>>RPL</option>
-                  <option value="tkj" <?php echo ($siswa['jurusan'] == 'tkj') ? 'selected' : ''; ?>>TKJ</option>
-                  <option value="tkr" <?php echo ($siswa['jurusan'] == 'tkr') ? 'selected' : ''; ?>>TKR</option>
-                  <option value="tbsm" <?php echo ($siswa['jurusan'] == 'tbsm') ? 'selected' : ''; ?>>TBSM</option>
-                  <option value="tei" <?php echo ($siswa['jurusan'] == 'tei') ? 'selected' : ''; ?>>TEI</option>
-              </select>
-        </div>
-        <div class="mb-3">
-            <ol for="tanggal">Tanggal</ol>
-            <input type="text" class="form-control" id="tanggal" name="tanggal" value="<?php echo date('d/m/Y'); ?>" readonly>
-        </div>
-        <div class="mb-3">
-            <ol for="time">Jam</ol>
-            <input type="text" class="form-control" id="time" name="time" value="<?php echo date('H:i:s'); ?>" readonly>
-        </div>
-        <div class="mb-3">
-              <ol for="foto">Foto Siswa:</ol>
-              <input type="hidden" name="foto" value="<?php echo $siswa['foto']; ?>">
-        </div>
-        <button type="submit" class="btn btn-primary">Update</button>
-        <a href="listmasuk.php" class="btn btn-secondary">Kembali</a>
-    </form>
+    <form action="update.php" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="<?php echo $siswa['id']; ?>">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <ol for="nama">Nama</ol>
+        <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $siswa['nama']; ?>" required>
+      </div>
+      <div class="col-md-6">
+        <ol for="kelas">Kelas</ol>
+        <select class="form-select" id="kelas" name="kelas" required>
+            <option value="X" <?php echo ($siswa['kelas'] == 'X') ? 'selected' : ''; ?>>X</option>
+            <option value="XI" <?php echo ($siswa['kelas'] == 'XI') ? 'selected' : ''; ?>>XI</option>
+            <option value="XII" <?php echo ($siswa['kelas'] == 'XII') ? 'selected' : ''; ?>>XII</option>
+        </select>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <ol for="mapel">Mapel</ol>
+        <select class="form-select" id="mapel" name="mapel" required>
+            <option value="mtk" <?php echo ($siswa['mapel'] == 'mtk') ? 'selected' : ''; ?>>MTK</option>
+            <option value="big" <?php echo ($siswa['mapel'] == 'big') ? 'selected' : ''; ?>>BIG</option>
+            <option value="ipa" <?php echo ($siswa['mapel'] == 'ipa') ? 'selected' : ''; ?>>IPA</option>
+            <option value="bin" <?php echo ($siswa['mapel'] == 'bin') ? 'selected' : ''; ?>>BIN</option>
+            <option value="pkn" <?php echo ($siswa['mapel'] == 'pkn') ? 'selected' : ''; ?>>PKN</option>
+            <option value="sejarah" <?php echo ($siswa['mapel'] == 'sejarah') ? 'selected' : ''; ?>>SEJARAH</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <ol for="jurusan">Jurusan</ol>
+        <select class="form-select" id="jurusan" name="jurusan" required>
+            <option value="rpl" <?php echo ($siswa['jurusan'] == 'rpl') ? 'selected' : ''; ?>>RPL</option>
+            <option value="tkj" <?php echo ($siswa['jurusan'] == 'tkj') ? 'selected' : ''; ?>>TKJ</option>
+            <option value="tkr" <?php echo ($siswa['jurusan'] == 'tkr') ? 'selected' : ''; ?>>TKR</option>
+            <option value="tbsm" <?php echo ($siswa['jurusan'] == 'tbsm') ? 'selected' : ''; ?>>TBSM</option>
+            <option value="tei" <?php echo ($siswa['jurusan'] == 'tei') ? 'selected' : ''; ?>>TEI</option>
+        </select>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <ol for="tanggal">Tanggal</ol>
+        <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?php echo $siswa['tanggal']; ?>" readonly>
+      </div>
+      <div class="col-md-6">
+        <ol for="time">Jam</ol>
+        <input type="time" class="form-control" id="time" name="time" value="<?php echo $siswa['time']; ?>" readonly>
+      </div> 
+    </div>
+    <div class="mb-3">
+      <ol for="foto">Foto Siswa:</ol>
+      <input type="file" name="foto" class="form-control" onchange="previewImage()">
+      <img src="images/<?= $siswa['foto']; ?>" width="120" style="display: block;" class="img-preview">
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a href="listmasuk.php" class="btn btn-secondary">Kembali</a>
+</form>
 </div>
 </body>
 <style>
 .container .sidenav {
-    
     width: 115px;
     height: 100vh;
     overflow: hidden;
@@ -149,7 +216,6 @@ body{
     transition: width 0.6s, left 0.6s;
     left: -20px;
     bottom: 0px;
-    /* Adjust the value for desired leftward shift */
 }
 </style>
 

@@ -1,55 +1,66 @@
 <?php
 include("conn.php");
 
-// Ambil data dari form
-$id = $_POST['id'];
-$nama = $_POST['nama'];
-$kelas = $_POST['kelas'];
-$jurusan = $_POST['jurusan'];
-$mapel = $_POST['mapel'];
-$tanggal = date('Y-m-d');
-$time = date('H:i:s');
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id = $_POST['id'];
+    $nama = $_POST['nama'];
+    $kelas = $_POST['kelas'];
+    $mapel = $_POST['mapel'];
+    $jurusan = $_POST['jurusan'];
 
-// Handle file upload (jika ada file yang diunggah)
-if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
-    $target_dir = "uploads/"; // Sesuaikan dengan direktori penyimpanan foto Anda
-    $target_file = $target_dir . basename($_FILES["foto"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    $sql = null; 
 
-    // Cek ekstensi file yang diizinkan (sesuaikan dengan kebutuhan Anda)
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        $uploadOk = 0;
-    }
+    if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
+        $target_dir = "images/";
+        $foto_name = basename($_FILES["foto"]["name"]);
+        $target_file = $target_dir . $foto_name;
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    // Jika tidak ada error, upload file
-    if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
-    } else {
-        if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
-            // Hapus foto lama jika ada
-            $sql_old_foto = "SELECT foto FROM tb_absen WHERE id=$id";
-            $result_old_foto = mysqli_query($conn, $sql_old_foto);
-            $row_old_foto = mysqli_fetch_assoc($result_old_foto);
-            if ($row_old_foto['foto'] != "" && file_exists($row_old_foto['foto'])) {
-                unlink($row_old_foto['foto']);
+        $check = getimagesize($_FILES["foto"]["tmp_name"]);
+        if ($check !== false) {
+            $uploadOk = 1;
+        } else {
+            $uploadOk = 0;
+        }
+
+        if ($_FILES["foto"]["size"] > 500000) {
+            $uploadOk = 0;
+        }
+
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif") {
+            $uploadOk = 0;
+        }
+
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+        } else {
+            if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
+                if (isset($_POST['old_foto']) && !empty($_POST['old_foto']) && file_exists($target_dir . $_POST['old_foto'])) {
+                    unlink($target_dir . $_POST['old_foto']);
+                }
+
+                $sql = "UPDATE tb_absen SET nama='$nama', kelas='$kelas', mapel='$mapel', jurusan='$jurusan', foto='$foto_name' WHERE id='$id'";
+            } else {
+                echo "Sorry, there was an error uploading your file.";
             }
-
-            // Update data siswa di database, termasuk foto baru
-            $sql = "UPDATE tb_absen SET nama='$nama', kelas='$kelas', jurusan='$jurusan', mapel='$mapel', tanggal='$tanggal', time='$time', foto='$target_file' WHERE id=$id";
+        }
+    } else {
+        if (isset($_POST['old_foto']) && !empty($_POST['old_foto'])) {
+            $sql = "UPDATE tb_absen SET nama='$nama', kelas='$kelas', mapel='$mapel', jurusan='$jurusan' WHERE id='$id'";
+        } else {
+            $sql = "UPDATE tb_absen SET nama='$nama', kelas='$kelas', mapel='$mapel', jurusan='$jurusan' WHERE id='$id'";
         }
     }
-} else {
-    // Jika tidak ada file baru diunggah, hanya update data yang lain
-    $sql = "UPDATE tb_absen SET nama='$nama', kelas='$kelas', jurusan='$jurusan', mapel='$mapel', tanggal='$tanggal', time='$time' WHERE id=$id";
-}
 
-$query = mysqli_query($conn, $sql);
-
-if ($query) {
-    header("Location: listmasuk.php?status=success");
-} else {
-    header("Location: listmasuk.php?status=error");
+    if ($sql !== null) {
+        if (mysqli_query($conn, $sql)) {
+            header("Location: listmasuk.php");
+            exit();
+        } else {
+            echo "Error updating record: " . mysqli_error($conn);
+        }
+    }
 }
 ?>

@@ -1,5 +1,19 @@
 <?php
-include("conn.php"); // Asumsikan file koneksi sudah ada
+include("conn.php");
+
+// Fungsi untuk mendapatkan hari saat ini (0 = Minggu, 6 = Sabtu)
+function getHari() {
+    return date('w');
+}
+
+// Cek apakah hari ini Sabtu atau Minggu
+if (getHari() == 6 || getHari() == 0) {
+    echo "<script>
+            alert('Tidak dapat melakukan absensi pada hari Sabtu dan Minggu.');
+            document.location.href = 'formabsen.php'; // Atau halaman lain yang sesuai
+          </script>";
+    exit(); // Hentikan eksekusi kode selanjutnya
+}
 
 // Cek apakah form telah dikirim
 if (isset($_POST['daftar'])) {
@@ -24,13 +38,12 @@ if (isset($_POST['daftar'])) {
 
   if ($result) {
     // kalau berhasil alihkan ke halaman list-siswa.php
-    echo "<script>
-            alert('data berhasil ditambahkan');
-            document.location.href = 'listmasuk.php';
-         </script>";
+    header('Location: listmasuk.php');
   } else {
     // kalau gagal tampilkan pesan
-    echo "data gagal ditambahkan!";
+    die("Gagal menyimpan perubahan...");
   }
+} else {
+  die("Akses dilarang...");
 }
 ?>

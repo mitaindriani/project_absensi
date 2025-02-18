@@ -1,11 +1,11 @@
 <?php
-include("conn.php"); date_default_timezone_set('Asia/Jakarta');
+include("conn.php");
 
 // Ambil ID dari URL
 $id = $_GET['id'];
 
 // Ambil data siswa berdasarkan ID
-$sql = "SELECT * FROM tb_guru WHERE id = $id";
+$sql = "SELECT * FROM tb_guru2 WHERE id = $id";
 $query = mysqli_query($conn, $sql);
 $siswa = mysqli_fetch_array($query);
 
@@ -73,15 +73,15 @@ if (!$siswa) {
 
     .content {
       padding: 20px;
-      margin-top: 70px;
-      /* Adjust to navbar height + some extra */
+      margin-top: 0px;
       font-family: sans-serif;
       background-color: #cadef5;
-      /* Blue background */
       background-size: cover;
       background-position: center;
       min-height: 100vh;
-      overflow-y: auto;
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
     }
 
     .header-title {
@@ -104,6 +104,17 @@ if (!$siswa) {
     .btn {
       border-radius: 10px; 
     }
+
+    .row {
+      display: flex;
+      justify-content: space-between; 
+      align-items: center; 
+    }
+
+    .col-md-6 {
+      flex: 1;
+      margin-right: 15px;
+    }
   </style>
 </head>
 
@@ -118,38 +129,48 @@ if (!$siswa) {
       <li><a href="absenmasuk.php"><i class='bx bxs-user-circle'></i> Absen Masuk</a></li>
       <li><a href="absenpulang.php"><i class='bx bxs-message-dots'></i> Absen Pulang</a></li>
       <li><a href="datasiswa.php"><i class='bx bxs-bar-chart-alt-2'></i> Data Absensi</a></li>
-      <li><a href="#"><i class='bx bxs-cog'></i> Setting</a></li>
+      <li><a href="setting_jam_kerja.php"><i class='bx bx-log-in'></i>Master Jadwal</a></li>
+      <li><a href="contact.php"><i class='bx bxs-cog'></i> Contact</a></li>
       <li><a href="login.php"><i class='bx bx-log-in'></i> Logout</a></li>
     </ul>
   </nav>
 
     <div class="content">
-    <div class="card w-50 mx-auto p-4">
-    <header  class="header-title">
-        <h1>Edit Absen Pulang</h1>
-        </header>
-    <form action="PRO-EDIT-PULANG.php" method="POST">
-        <input type="hidden" name="id" value="<?php echo $siswa['id']; ?>">
-        <div class="mb-3">
-            <ol for="id_guru" >ID Guru</ol>
-            <input type="text" class="form-control" id="id_guru" name="id_guru" value="<?php echo $siswa['id_guru']; ?>" required>
+        <div class="card w-50 mx-auto p-4 ">
+            <header class="header-title">
+                <h1>Edit Absen Pulang</h1>
+            </header>
+            <form action="PRO-EDIT-PULANG.php" method="POST">
+                <input type="hidden" name="id" value="<?php echo $siswa['id']; ?>">
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="id_guru">ID Guru:</label>
+                        <input type="text" class="form-control" id="id_guru" name="id_guru" value="<?php echo $siswa['id_guru']; ?>" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="nama">Nama:</label>
+                        <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $siswa['nama']; ?>" required>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="tanggal">Tanggal:</label>
+                        <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?php echo $siswa['tanggal']; ?>" readonly>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="time">Jam:</label>
+                        <input type="time" class="form-control" id="time" name="time" value="<?php echo $siswa['time']; ?>" readonly>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a href="LIST-P-GURU.php" class="btn btn-secondary">Kembali</a>
+            </form>
         </div>
-        <div class="mb-3">
-            <ol for="nama" >Nama</ol>
-            <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $siswa['nama']; ?>" required>
-        </div>
-        <div class="mb-3">
-            <ol for="tanggal">Tanggal</ol>
-            <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?php echo $siswa['tanggal']; ?>" required>
-        </div>
-        <div class="mb-3">
-            <ol for="time">Jam</ol>
-            <input type="time" class="form-control" id="time" name="time" value="<?php echo $siswa['time']; ?>" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Update</button>
-        <a href="LIST-P-GURU.php" class="btn btn-secondary">Kembali</a>
-    </form>
-</div>
+    </div>
+
 </body>
 <style>
 .container .sidenav {
@@ -163,7 +184,6 @@ if (!$siswa) {
     transition: width 0.6s, left 0.6s;
     left: -20px;
     bottom: 0px;
-    /* Adjust the value for desired leftward shift */
 }
 </style>
 

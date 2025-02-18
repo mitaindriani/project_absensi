@@ -10,55 +10,53 @@
     <style>
         @media print {
             body {
-                margin: 0; /* Remove default margins */
-                font-size: 12pt; /* Set font size for printing */
+                margin: 0; 
+                font-size: 12pt; 
             }
 
             .container {
-                max-width: 100%; /* Make container full width */
-                padding: 0; /* Remove container padding */
+                max-width: 100%; 
+                padding: 0; 
             }
 
             table {
-                width: 100%; /* Make table full width */
-                border-collapse: collapse; /* Collapse table borders */
+                width: 100%;
+                border-collapse: collapse; 
             }
 
             th,
             td {
-                border: 1px solid black; /* Add borders to cells */
-                padding: 8px; /* Add padding to cells */
-                text-align: left; /* Align text to the left */
+                border: 1px solid black;
+                padding: 8px;
+                text-align: left; 
             }
 
             img {
-                max-width: 80px; /* Limit image width for printing */
+                max-width: 80px; 
                 height: auto;
             }
 
             .no-print {
-                display: none; /* Hide elements with class "no-print" */
+                display: none; 
             }
 
             .header {
-                text-align: center; /* Center header content */
+                text-align: center; 
                 margin-bottom: 20px;
             }
 
             .header img {
-                max-width: 150px; /* Adjust logo size as needed */
+                max-width: 150px; 
                 margin-bottom: 10px;
             }
 
             .footer {
                 margin-top: 20px;
-                text-align: left; /* Align footer text to the left */
+                text-align: left;
             }
         }
-
-        /* Styling for display (non-print) */
         body {
-            font-size: 10pt; /* Set default font size */
+            font-size: 10pt;
         }
 
         .container {
@@ -76,13 +74,13 @@
         }
 
         .table-bordered {
-            border: 1px solid #dee2e6; /* Add border to the table */
+            border: 1px solid #dee2e6;
         }
 
         .table-bordered th,
         .table-bordered td {
-            border: 1px solid #dee2e6; /* Add border to table cells */
-            padding: 8px; /* Add padding to cells */
+            border: 1px solid #dee2e6; 
+            padding: 8px;
         }
 
         img {
@@ -90,26 +88,26 @@
             height: auto;
         }
         .header {
-        text-align: center; /* Judul dan alamat di tengah */
-        margin-bottom: 20px; /* Spasi di bawah judul */
+        text-align: center; 
+        margin-bottom: 20px; 
         }
 
         .header img {
-        max-width: 150px; /* Ukuran logo */
+        max-width: 150px; 
         margin-bottom: 10px;
         }
 
         .header .report-title {
             font-weight: bold;
-            margin-bottom: 5px; /* Adjust spacing */
+            margin-bottom: 5px;
         }
         table.table-bordered {
-        border: 1px solid black; /* Black border for the table */
+        border: 1px solid black; 
         }
 
         table.table-bordered th,
         table.table-bordered td {
-        border: 1px solid black; /* Black borders for table cells */
+        border: 1px solid black; 
         }
     </style>
 </head>
@@ -124,6 +122,60 @@
             <h6>Periode: Januari 2025</h6>
         </div>
 
+        <div class="no-print">  <form method="GET" action="">
+                <div class="row mb-3">
+                    <div class="col-auto">
+                        <select class="form-select" name="filter_by" id="filter_by">
+                            <option value="bulan">Bulan</option>
+                            <option value="kelas">Kelas</option>
+                        </select>
+                    </div>
+                    <div class="col-auto" id="bulan_select">
+                        <select class="form-select" name="bulan">
+                            <option value="">-- Pilih Bulan --</option>
+                            <?php
+                            $bulan = array(
+                                "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                                "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+                            );
+                            for ($i = 1; $i <= 12; $i++) {
+                                $selected = (isset($_GET['bulan']) && $_GET['bulan'] == $i) ? 'selected' : '';
+                                echo '<option value="' . $i . '" ' . $selected . '>' . $bulan[$i - 1] . '</option>';
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-auto" id="kelas_select" style="display: none;">
+                        <select class="form-select" name="kelas">
+                            <option value="">-- Pilih Kelas --</option>
+                            <?php
+                            $kelas_query = mysqli_query($conn, "SELECT DISTINCT kelas FROM tb_absen");
+                            while ($kelas_row = mysqli_fetch_assoc($kelas_query)) {
+                                $selected_kelas = (isset($_GET['kelas']) && $_GET['kelas'] == $kelas_row['kelas']) ? 'selected' : '';
+                                echo "<option value='" . $kelas_row['kelas'] . "' $selected_kelas>" . $kelas_row['kelas'] . "</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <select class="form-select" name="tahun">
+                            <option value="">-- Pilih Tahun --</option>
+                            <?php
+                            $tahun_awal = 2020;
+                            $tahun_akhir = date("Y");
+                            for ($tahun = $tahun_awal; $tahun <= $tahun_akhir; $tahun++) {
+                                $selected_tahun = (isset($_GET['tahun']) && $_GET['tahun'] == $tahun) ? 'selected' : '';
+                                echo "<option value='$tahun' $selected_tahun>$tahun</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Tampilkan</button>
+                    </div>
+                </div>
+            </form>
+        </div>  
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -139,7 +191,35 @@
             </thead>
             <tbody>
                 <?php
+                $filter_by = isset($_GET['filter_by']) ? $_GET['filter_by'] : 'bulan';
+                $bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : '';
+                $kelas_dipilih = isset($_GET['kelas']) ? $_GET['kelas'] : '';
+                $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : '';
+
                 $sql = "SELECT * FROM tb_absen";
+                $where_clause = "";
+
+                if ($filter_by == 'bulan') {
+                    if (!empty($bulan_dipilih)) {
+                        $where_clause .= "MONTH(tanggal) = '$bulan_dipilih'";
+                    }
+                } else if ($filter_by == 'kelas') {
+                    if (!empty($kelas_dipilih)) {
+                        $where_clause .= "kelas = '$kelas_dipilih'";
+                    }
+                }
+
+                if (!empty($tahun_dipilih)) {
+                    if (!empty($where_clause)) {
+                        $where_clause .= " AND ";
+                    }
+                    $where_clause .= "YEAR(tanggal) = '$tahun_dipilih'";
+                }
+
+                if (!empty($where_clause)) {
+                    $sql .= " WHERE " . $where_clause;
+                }
+
                 $query = mysqli_query($conn, $sql);
                 $i = 1;
                 while ($siswa = mysqli_fetch_array($query)) : ?>
@@ -162,9 +242,25 @@
             <h6>Total Siswa: <?= mysqli_num_rows($query) ?></h6>
             <h6>Tanggal Cetak: <?= date('Y-m-d') ?></h6>
         </div>
-
+        <div class="no-print">
         <button class="btn btn-primary no-print" onclick="window.print()">Cetak</button>
+        <a href="listmasuk.php" class="btn btn-secondary">Kembali</a>
     </div>
+    <script>
+        const filterBySelect = document.getElementById('filter_by');
+        const bulanSelect = document.getElementById('bulan_select');
+        const kelasSelect = document.getElementById('kelas_select');
+
+        filterBySelect.addEventListener('change', function() {
+            if (this.value === 'bulan') {
+                bulanSelect.style.display = 'block';
+                kelasSelect.style.display = 'none';
+            } else if (this.value === 'kelas') {
+                bulanSelect.style.display = 'none';
+                kelasSelect.style.display = 'block';
+            }
+        });
+    </script>
 </body>
 
 </html>

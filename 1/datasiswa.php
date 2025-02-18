@@ -82,7 +82,7 @@
 
     .content {
       padding: 100px 20px;
-      margin-top: 70px;
+      margin-top: 0px;
       font-family: sans-serif;
       background-color: #cadef5;
       background-size: cover;
@@ -107,7 +107,8 @@
       <li><a href="absenmasuk.php"><i class='bx bxs-user-circle'></i> Absen Masuk</a></li>
       <li><a href="absenpulang.php"><i class='bx bxs-message-dots'></i> Absen Pulang</a></li>
       <li><a href="datasiswa.php"><i class='bx bxs-bar-chart-alt-2'></i> Data Absensi</a></li>
-      <li><a href="#"><i class='bx bxs-cog'></i> Setting</a></li>
+      <li><a href="setting_jam_kerja.php"><i class='bx bx-log-in'></i>Master Jadwal</a></li>
+      <li><a href="contact.php"><i class='bx bxs-cog'></i> Contact</a></li>
       <li><a href="login.php"><i class='bx bx-log-in'></i> Logout</a></li>
     </ul>
   </nav>

@@ -26,7 +26,6 @@ if (!$siswa) {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <style>
-    /* Basic styling for the navbar */
     nav {
       background-color: #333;
       color: white;
@@ -36,11 +35,8 @@ if (!$siswa) {
       justify-content: space-between;
       align-items: center;
       position: fixed;
-      /* Stay at the top */
       width: 100%;
-      /* Full width */
       z-index: 100;
-      /* Ensure it's above other content */
     }
 
     nav ul {
@@ -77,15 +73,15 @@ if (!$siswa) {
 
     .content {
       padding: 20px;
-      margin-top: 70px;
-      /* Adjust to navbar height + some extra */
+      margin-top: 0px;
       font-family: sans-serif;
       background-color: #cadef5;
-      /* Blue background */
       background-size: cover;
       background-position: center;
       min-height: 100vh;
-      overflow-y: auto;
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
     }
     .header-title {
       text-align: center; 
@@ -108,20 +104,16 @@ if (!$siswa) {
       border-radius: 10px; 
     }
 
-    .form-row {
-            display: flex;
-            flex-wrap: wrap;
-        }
+    .row {
+      display: flex;
+      justify-content: space-between; 
+      align-items: center; 
+    }
 
-        .form-row > div {
-            flex: 0 0 auto;
-            width: 33.33%;
-            margin-right: 15px;
-        }
-
-        .form-row > div:last-child {
-            margin-right: 0;
-        }
+    .col-md-6 {
+      flex: 1;
+      margin-right: 15px;
+    }
   </style>
 </head>
 
@@ -136,7 +128,7 @@ if (!$siswa) {
       <li><a href="absenmasuk.php"><i class='bx bxs-user-circle'></i> Absen Masuk</a></li>
       <li><a href="absenpulang.php"><i class='bx bxs-message-dots'></i> Absen Pulang</a></li>
       <li><a href="datasiswa.php"><i class='bx bxs-bar-chart-alt-2'></i> Data Absensi</a></li>
-      <li><a href="#"><i class='bx bxs-cog'></i> Setting</a></li>
+      <li><a href="contact.php"><i class='bx bxs-cog'></i> Contact</a></li>
       <li><a href="login.php"><i class='bx bx-log-in'></i> Logout</a></li>
     </ul>
   </nav>
@@ -144,7 +136,7 @@ if (!$siswa) {
     <div class="content">
     <div class="card w-50 mx-auto p-4">
     <header  class="header-title">
-        <h1>Edit Absen Masuk</h1>
+        <h1>Edit Absen Masuk</h1><br>
         </header>
     <form action="update.php" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?php echo $siswa['id']; ?>">
@@ -161,8 +153,6 @@ if (!$siswa) {
             <option value="XII" <?php echo ($siswa['kelas'] == 'XII') ? 'selected' : ''; ?>>XII</option>
         </select>
       </div>
-    </div>
-    <div class="row mb-3">
       <div class="col-md-6">
         <ol for="mapel">Mapel</ol>
         <select class="form-select" id="mapel" name="mapel" required>
@@ -174,6 +164,8 @@ if (!$siswa) {
             <option value="sejarah" <?php echo ($siswa['mapel'] == 'sejarah') ? 'selected' : ''; ?>>SEJARAH</option>
         </select>
       </div>
+  </div>
+  <div class="row mb-3">
       <div class="col-md-6">
         <ol for="jurusan">Jurusan</ol>
         <select class="form-select" id="jurusan" name="jurusan" required>
@@ -184,8 +176,6 @@ if (!$siswa) {
             <option value="tei" <?php echo ($siswa['jurusan'] == 'tei') ? 'selected' : ''; ?>>TEI</option>
         </select>
       </div>
-    </div>
-    <div class="row mb-3">
       <div class="col-md-6">
         <ol for="tanggal">Tanggal</ol>
         <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?php echo $siswa['tanggal']; ?>" readonly>
@@ -195,10 +185,20 @@ if (!$siswa) {
         <input type="time" class="form-control" id="time" name="time" value="<?php echo $siswa['time']; ?>" readonly>
       </div> 
     </div>
-    <div class="mb-3">
-      <ol for="foto">Foto Siswa:</ol>
-      <input type="file" name="foto" class="form-control" onchange="previewImage()">
-      <img src="images/<?= $siswa['foto']; ?>" width="120" style="display: block;" class="img-preview">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <ol for="foto">Foto Siswa:</ol>
+        <input type="file" name="foto" class="form-control" onchange="previewImage()">
+        <img src="images/<?= $siswa['foto']; ?>" width="120" style="display: block;" class="img-preview">
+      </div>
+      <div class="col-md-6">
+        <ol for="keterangan">Keterangan</ol>
+        <select class="form-select" id="keterangan" name="keterangan" required>
+            <option value="masuk" <?php echo ($siswa['keterangan'] == 'masuk') ? 'selected' : ''; ?>>Masuk</option>
+            <option value="izin" <?php echo ($siswa['keterangan'] == 'izin') ? 'selected' : ''; ?>>Izin</option>
+            <option value="sakit" <?php echo ($siswa['keterangan'] == 'sakit') ? 'selected' : ''; ?>>Sakit</option>
+        </select>
+      </div>
     </div>
     <button type="submit" class="btn btn-primary">Update</button>
     <a href="listmasuk.php" class="btn btn-secondary">Kembali</a>

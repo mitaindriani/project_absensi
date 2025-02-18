@@ -9,6 +9,7 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
   <style>
    nav {
       background-color: #333;
@@ -62,19 +63,18 @@
       border-radius: 60px; 
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
       text-align: center; 
-      width: 80%; /* Increased width */
-      max-width: 800px; /* Set a max width */
+      width: 80%;
+      max-width: 800px; 
       height: 300px;
     }
 
     .subject_buttons button {
       margin: 10px; 
-      background-color:rgb(115, 144, 173); /* Bootstrap primary color */
-      color: white; /* Text color */
-      border: none; /* Remove border */
-      padding: 10px 20px; /* Padding for buttons */
-      border-radius: 30px; /* Rounded corners */
-      transition: background-color 0.3s ease; /* Transition for hover effect */
+      background-color:rgb(115, 144, 173); 
+      color: white; 
+      border: none; 
+      border-radius: 30px;
+      transition: background-color 0.3s ease; 
     }
 
     .subject_buttons button:hover {
@@ -96,8 +96,8 @@
     }
 
     .button-container {
-            display: flex; /* Enable flexbox for alignment */
-            justify-content: flex-end; /* Align buttons to the right */
+            display: flex; 
+            justify-content: flex-end;
             margin-top: 80px;
             margin-bottom: -40px;
         }
@@ -110,17 +110,73 @@
             border: none;
             background-color: transparent;
             padding: 0;
-            margin-top: 100px; /* Increased margin-top */
+            margin-top: 100px; 
             margin-bottom: 20px;
-            text-align: center; /* Center the text */
+            text-align: center;
         }
 
         .form-control h1 {
             margin-bottom: -40px;
         }
         body{
-  background-color:#D9EAFD;
-}
+            background-color:#D9EAFD;
+        }
+        .late-entry {
+            color: red; 
+        }
+        .table th, .table td {
+            border: 2px solid black; /* Ganti dengan warna dan ketebalan yang diinginkan */
+        }
+
+        .table tbody tr.late-entry:hover {
+
+            color: red; /* Pastikan teks tetap terlihat */
+        }
+        .fancybox-content {
+            width: auto !important; /* Adjust as needed */
+            height: auto !important; /* Adjust as needed */
+        }
+        .fancybox-image {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .tepat-waktu {
+            color: green;
+        }
+
+        .terlambat {
+            color: red;
+        }
+        .masuk { 
+            color: green; 
+        } 
+
+        .izin { 
+            color: blue; 
+        } 
+
+        .sakit { 
+            color: orange; 
+        }
+        
+        .keterangan-box {
+            display: flex;
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: white;
+        }
+        
+        .masuk .keterangan-box {
+            background-color: green;
+        }
+        
+        .izin .keterangan-box {
+            background-color: blue;
+        }
+        
+        .sakit .keterangan-box {
+            background-color: orange;
+        }
   </style>
 </head>
 
@@ -135,7 +191,7 @@
       <li><a href="absenmasuk.php"><i class='bx bxs-user-circle'></i> Absen Masuk</a></li>
       <li><a href="absenpulang.php"><i class='bx bxs-message-dots'></i> Absen Pulang</a></li>
       <li><a href="datasiswa.php"><i class='bx bxs-bar-chart-alt-2'></i> Data Absensi</a></li>
-      <li><a href="#"><i class='bx bxs-cog'></i> Setting</a></li>
+      <li><a href="contact.php"><i class='bx bxs-cog'></i> Contact</a></li>
       <li><a href="login.php"><i class='bx bx-log-in'></i> Logout</a></li>
     </ul>
   </nav>
@@ -169,7 +225,7 @@
                         <select class="form-select" name="tahun">
                             <option value="">-- Pilih Tahun --</option>
                             <?php
-                            $tahun_awal = 2020; // Ganti dengan tahun awal yang Anda inginkan
+                            $tahun_awal = 2020; // Ganti dengan tahun awal yang di inginkan
                             $tahun_akhir = date("Y");
                             for ($tahun = $tahun_awal; $tahun <= $tahun_akhir; $tahun++) {
                                 $selected_tahun = (isset($_GET['tahun']) && $_GET['tahun'] == $tahun) ? 'selected' : '';
@@ -184,73 +240,96 @@
                 </div>
             </form>
 
-            <table class="table table-striped table-hover table-bordered mt-5">
+            <table class="table table-transparent table-hover table-bordered mt-5">
                 <thead class="table-dark">
                     <tr>
                         <th>No</th>
+                        <th>Id Guru</th>
                         <th>Nama</th>
                         <th>Tanggal</th>
-                        <th>Jam</th>
+                        <th>Status</th>
                         <th>Foto</th>
+                        <th>Keterangan</th>
                         <th>Tindakan</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php
-                    $i = 1;
-                    $bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : '';
-                    $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : '';
+                                <tbody>
+                <?php
+            $i = 1;
+            $bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : '';
+            $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : '';
 
-                    $sql = "SELECT * FROM tb_guru";
-                    $where_clause = "";
+            $sql = "SELECT tb_guru.*, master_jadwal.jam_masuk 
+                        FROM tb_guru 
+                        LEFT JOIN master_jadwal ON DAYNAME(tb_guru.tanggal_waktu) = master_jadwal.hari";
 
-                    if (!empty($bulan_dipilih)) {
-                        $where_clause .= "MONTH(tanggal) = '$bulan_dipilih'";
-                    }
+                $where_clause = "";
 
-                    if (!empty($tahun_dipilih)) {
-                        if (!empty($where_clause)) {
-                            $where_clause .= " AND ";
+            if (!empty($bulan_dipilih)) {
+                $where_clause .= "MONTH(tb_guru.tanggal_waktu) = '$bulan_dipilih'";
+            }
+
+            if (!empty($tahun_dipilih)) {
+                if (!empty($where_clause)) {
+                    $where_clause .= " AND ";
+                }
+                $where_clause .= "YEAR(tb_guru.tanggal_waktu) = '$tahun_dipilih'";
+            }
+
+            if (!empty($where_clause)) {
+                $sql .= " WHERE " . $where_clause;
+            }
+
+            $query = mysqli_query($conn, $sql);
+
+            if ($query) {
+                while ($siswa = mysqli_fetch_array($query)) :
+                    $status = 'tepat-waktu'; // Default status
+
+                    if ($siswa['jam_masuk'] !== null) {
+                        $jam_masuk = strtotime($siswa['jam_masuk']);
+                        $jam_absen = strtotime($siswa['time']);
+
+                        if ($jam_absen > $jam_masuk) {
+                            $status = 'terlambat';
                         }
-                        $where_clause .= "YEAR(tanggal) = '$tahun_dipilih'";
                     }
 
-                    if (!empty($where_clause)) {
-                        $sql .= " WHERE " . $where_clause;
-                    }
-
-                    $query = mysqli_query($conn, $sql);
-
-                    if ($query) {
-                        while ($siswa = mysqli_fetch_array($query)):
-                            ?>
-                            <tr>
+                    ?>
+                             <tr>
+                                <td><?php echo $i ?></td>
+                                <td><?php echo $siswa['id_guru'] ?></td>
+                                <td><?php echo $siswa['nama'] ?></td>
+                                <td><?php echo $siswa['tanggal_waktu'] ?></td>
+                                <td class="<?php echo $status; ?>">
+                            <?php echo ($status == 'terlambat') ? 'Terlambat' : 'Tepat Waktu'; ?>
+                            </td>
                                 <td>
-                                    <?php echo $i ?>
+                                    <a href="images/<?php echo $siswa['foto']; ?>" data-fancybox="gallery" data-caption="<?php echo $siswa['nama'] . ' - ' . $siswa['tanggal_waktu']; ?>">
+                                        <img src="images/<?php echo $siswa['foto']; ?>" width="120" style="display: block;">
+                                    </a>
                                 </td>
-                                <td>
-                                    <?php echo $siswa['nama'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $siswa['tanggal'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $siswa['time'] ?>
-                                </td>
-                                <td><img src="images/<?= $siswa['foto']; ?>" width="150"></td>
-                                <td>
-                                    <div class='row'>
-                                        <div class='col d-flex justify-content-center'>
-                                            <a href="EDIT-M-GURU.php?id=<?php echo $siswa['id'] ?>"
-                                                class='btn btn-sm btn-warning'>Edit</a>
-                                        </div>
-                                        <div class='col d-flex justify-content-center'>
-                                            <a href="HAPUS-M-GURU.php?id=<?= $siswa['id']; ?>"
-                                                onclick="return confirm('apakah anda yakin?');"
-                                                class='btn btn-sm btn-danger'>hapus</a>
-                                        </div>
-                                    </div>
-                                </td>
+                        
+                            <td class="<?php echo $siswa['keterangan']; ?>"> 
+                                <span class="keterangan-box">
+                                    <?php echo $siswa['keterangan']; ?>
+                                </span>
+                            </td>
+                        </td>
+                        <td>
+                            <div class='row'>
+                                <div class='col d-flex justify-content-center'>
+                                    <a href="EDIT-M-GURU.php?id=<?php echo $siswa['id'] ?>" class='btn btn-sm btn-warning'>
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                </div>
+                                <div class='col d-flex justify-content-center'>
+                                    <a href="HAPUS-M-GURU.php?id=<?= $siswa['id']; ?>" onclick="return confirm('apakah anda yakin?');" class='btn btn-sm btn-danger'>
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
                             </tr>
                             <?php $i++;
                         endwhile;
@@ -260,11 +339,10 @@
                     ?>
                 </tbody>
             </table>
-            <p>Total Siswa Absen:
+            <p>Total Guru Absen:
                 <?php echo mysqli_num_rows($query) ?>
             </p>
         </div>
-    </div>
     
 </body>
 

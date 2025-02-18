@@ -10,7 +10,7 @@ function getHari() {
 if (getHari() == 6 || getHari() == 0) {
     echo "<script>
             alert('Tidak dapat melakukan absensi pada hari Sabtu dan Minggu.');
-            document.location.href = 'formabsen.php'; // Atau halaman lain yang sesuai
+            document.location.href = 'GURUPULANG.php'; // Atau halaman lain yang sesuai
           </script>";
     exit(); // Hentikan eksekusi kode selanjutnya
 }
@@ -20,11 +20,15 @@ if (isset($_POST['daftar'])) {
   // Ambil data dari form
   $id_guru = htmlspecialchars($_POST['id_guru']);
   $nama = htmlspecialchars($_POST['nama']);
-  $tanggal = date('Y-m-d');
-  $time = date('H:i:s');
+  $tanggal_waktu_string = $_POST['tanggal_waktu'];
+
+  $dateTime = new DateTime($tanggal_waktu_string);
+
+    // Debugging: Tampilkan waktu yang diambil
+    echo "Waktu yang diambil: " . $time . "<br>";
   // Simpan data ke database (tanpa gambar)
-  $sql = "INSERT INTO tb_guru2 (id_guru, nama, tanggal, time)
-          VALUES ('$id_guru', '$nama', '$tanggal', '$time')";
+  $sql = "INSERT INTO tb_guru2 (id_guru, nama, tanggal_waktu)
+          VALUES ('$id_guru', '$nama', '$tanggal_waktu_string')";
 
   $result = $conn->query($sql);
 

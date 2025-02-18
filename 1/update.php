@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $kelas = $_POST['kelas'];
     $mapel = $_POST['mapel'];
     $jurusan = $_POST['jurusan'];
+    $keterangan = $_POST['keterangan'];
 
     $sql = null; 
 
@@ -48,9 +49,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
         if (isset($_POST['old_foto']) && !empty($_POST['old_foto'])) {
-            $sql = "UPDATE tb_absen SET nama='$nama', kelas='$kelas', mapel='$mapel', jurusan='$jurusan' WHERE id='$id'";
+            $sql = "UPDATE tb_absen SET nama='$nama', kelas='$kelas', mapel='$mapel', jurusan='$jurusan', keterangan='$keterangan' WHERE id='$id'";
         } else {
-            $sql = "UPDATE tb_absen SET nama='$nama', kelas='$kelas', mapel='$mapel', jurusan='$jurusan' WHERE id='$id'";
+            $sql = "UPDATE tb_absen SET nama='$nama', kelas='$kelas', mapel='$mapel', jurusan='$jurusan', keterangan='$keterangan' WHERE id='$id'";
         }
     }
 

@@ -9,6 +9,7 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
   <style>
    nav {
       background-color: #333;
@@ -135,7 +136,7 @@
       <li><a href="absenmasuk.php"><i class='bx bxs-user-circle'></i> Absen Masuk</a></li>
       <li><a href="absenpulang.php"><i class='bx bxs-message-dots'></i> Absen Pulang</a></li>
       <li><a href="datasiswa.php"><i class='bx bxs-bar-chart-alt-2'></i> Data Absensi</a></li>
-      <li><a href="#"><i class='bx bxs-cog'></i> Setting</a></li>
+      <li><a href="contact.php"><i class='bx bxs-cog'></i> Contact</a></li>
       <li><a href="login.php"><i class='bx bx-log-in'></i> Logout</a></li>
     </ul>
   </nav>
@@ -188,64 +189,71 @@
                 <thead class="table-dark">
                     <tr>
                         <th>No</th>
+                        <th>Id Guru</th>
                         <th>Nama</th>
                         <th>Tanggal</th>
-                        <th>Jam</th>
                         <th>Tindakan</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    $i = 1;
-                    $bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : '';
-                    $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : '';
+            <?php
+            $i = 1;
+            $bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : '';
+            $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : '';
 
-                    $sql = "SELECT * FROM tb_guru2";
-                    $where_clause = "";
+            $sql = "SELECT tb_guru2.*, master_jadwal.jam_masuk 
+                        FROM tb_guru2 
+                        LEFT JOIN master_jadwal ON DAYNAME(tb_guru2.tanggal_waktu) = master_jadwal.hari";
 
-                    if (!empty($bulan_dipilih)) {
-                        $where_clause .= "MONTH(tanggal) = '$bulan_dipilih'";
-                    }
+                $where_clause = "";
 
-                    if (!empty($tahun_dipilih)) {
-                        if (!empty($where_clause)) {
-                            $where_clause .= " AND ";
+            if (!empty($bulan_dipilih)) {
+                $where_clause .= "MONTH(tb_guru2.tanggal_waktu) = '$bulan_dipilih'";
+            }
+
+            if (!empty($tahun_dipilih)) {
+                if (!empty($where_clause)) {
+                    $where_clause .= " AND ";
+                }
+                $where_clause .= "YEAR(tb_guru2.tanggal_waktu) = '$tahun_dipilih'";
+            }
+
+            if (!empty($where_clause)) {
+                $sql .= " WHERE " . $where_clause;
+            }
+
+            $query = mysqli_query($conn, $sql);
+
+            if ($query) {
+                while ($siswa = mysqli_fetch_array($query)) :
+                    $status = 'tepat-waktu'; // Default status
+
+                    if ($siswa['jam_masuk'] !== null) {
+                        $jam_masuk = strtotime($siswa['jam_masuk']);
+                        $jam_absen = strtotime($siswa['time']);
+
+                        if ($jam_absen > $jam_masuk) {
+                            $status = 'terlambat';
                         }
-                        $where_clause .= "YEAR(tanggal) = '$tahun_dipilih'";
                     }
 
-                    if (!empty($where_clause)) {
-                        $sql .= " WHERE " . $where_clause;
-                    }
-
-                    $query = mysqli_query($conn, $sql);
-
-                    if ($query) {
-                        while ($siswa = mysqli_fetch_array($query)):
-                            ?>
+                    ?>
                             <tr>
-                                <td>
-                                    <?php echo $i ?>
-                                </td>
-                                <td>
-                                    <?php echo $siswa['nama'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $siswa['tanggal'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $siswa['time'] ?>
-                                </td>
+                                <td><?php echo $i ?></td>
+                                <td><?php echo $siswa['id_guru'] ?></td>
+                                <td><?php echo $siswa['nama'] ?></td>
+                                <td><?php echo $siswa['tanggal_waktu'] ?></td>
                                 <td>
                                     <div class='row'>
                                         <div class='col d-flex justify-content-center'>
-                                            <a href="EDIT-P-GURU.php?id=<?php echo $siswa['id'] ?>"
-                                                class='btn btn-sm btn-warning'>Edit</a>
+                                            <a href="EDIT-P-GURU.php?id=<?php echo $siswa['id'] ?>" class='btn btn-sm btn-warning'>
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
                                         </div>
                                         <div class='col d-flex justify-content-center'>
-                                            <a href="HAPUS-P-GURU.php?id=<?= $siswa['id']; ?>"
-                                                onclick="return confirm('apakah anda yakin?');"
-                                                class='btn btn-sm btn-danger'>hapus</a>
+                                            <a href="HAPUS-P-GURU.php?id=<?= $siswa['id']; ?>" onclick="return confirm('apakah anda yakin?');" class='btn btn-sm btn-danger'>
+                                                <i class="bi bi-trash"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </td>
@@ -258,7 +266,7 @@
                     ?>
                 </tbody>
             </table>
-            <p>Total Siswa Absen:
+            <p>Total Guru Absen Pulang:
                 <?php echo mysqli_num_rows($query) ?>
             </p>
         </div>

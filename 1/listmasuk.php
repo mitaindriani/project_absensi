@@ -1,16 +1,16 @@
 <?php include("conn.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Navbar Example</title>
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <style>
-   nav {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar Example</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+nav {
       background-color: #333;
       color: white;
       padding: 20px;
@@ -62,19 +62,18 @@
       border-radius: 60px; 
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
       text-align: center; 
-      width: 80%; /* Increased width */
-      max-width: 800px; /* Set a max width */
+      width: 80%;
+      max-width: 800px; 
       height: 300px;
     }
 
     .subject_buttons button {
       margin: 10px; 
-      background-color:rgb(115, 144, 173); /* Bootstrap primary color */
-      color: white; /* Text color */
-      border: none; /* Remove border */
-      padding: 10px 20px; /* Padding for buttons */
-      border-radius: 30px; /* Rounded corners */
-      transition: background-color 0.3s ease; /* Transition for hover effect */
+      background-color:rgb(115, 144, 173); 
+      color: white; 
+      border: none; 
+      border-radius: 30px;
+      transition: background-color 0.3s ease; 
     }
 
     .subject_buttons button:hover {
@@ -96,8 +95,8 @@
     }
 
     .button-container {
-            display: flex; /* Enable flexbox for alignment */
-            justify-content: flex-end; /* Align buttons to the right */
+            display: flex; 
+            justify-content: flex-end;
             margin-top: 80px;
             margin-bottom: -40px;
         }
@@ -110,174 +109,243 @@
             border: none;
             background-color: transparent;
             padding: 0;
-            margin-top: 100px; /* Increased margin-top */
+            margin-top: 100px; 
             margin-bottom: 20px;
-            text-align: center; /* Center the text */
+            text-align: center;
         }
 
         .form-control h1 {
             margin-bottom: -40px;
         }
         body{
-  background-color:#D9EAFD;
-}
-  </style>
+            background-color:#D9EAFD;
+        }
+        .late-entry {
+            color: red; 
+        }
+        .table th, .table td {
+            border: 2px solid black; /* Ganti dengan warna dan ketebalan yang diinginkan */
+        }
+
+        .table tbody tr.late-entry:hover {
+
+            color: red; /* Pastikan teks tetap terlihat */
+        }
+        .fancybox-content {
+            width: auto !important; /* Adjust as needed */
+            height: auto !important; /* Adjust as needed */
+        }
+        .fancybox-image {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .tepat-waktu {
+            color: green;
+        }
+
+        .terlambat {
+            color: red;
+        }
+        .masuk { 
+            color: green; 
+        } 
+
+        .izin { 
+            color: blue; 
+        } 
+
+        .sakit { 
+            color: orange; 
+        }
+        
+        .keterangan-box {
+            display: flex;
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: white;
+        }
+        
+        .masuk .keterangan-box {
+            background-color: green;
+        }
+        
+        .izin .keterangan-box {
+            background-color: blue;
+        }
+        
+        .sakit .keterangan-box {
+            background-color: orange;
+        }
+    </style>
 </head>
 
 <body>
-    <nav>
-    <div class="logo">
-      <img src="kanesa.png" width="50px" height="50px">
-      <h2>SMKN 1 KEPANJEN</h2>
-    </div>
-    <ul>
-      <li><a href="index.html"><i class='bx bxs-home'></i> Home</a></li>
-      <li><a href="absenmasuk.php"><i class='bx bxs-user-circle'></i> Absen Masuk</a></li>
-      <li><a href="absenpulang.php"><i class='bx bxs-message-dots'></i> Absen Pulang</a></li>
-      <li><a href="datasiswa.php"><i class='bx bxs-bar-chart-alt-2'></i> Data Absensi</a></li>
-      <li><a href="#"><i class='bx bxs-cog'></i> Setting</a></li>
-      <li><a href="login.php"><i class='bx bx-log-in'></i> Logout</a></li>
-    </ul>
-  </nav>
-        <header class="form-control">
-            <h1>List Absen Masuk Siswa</h1>
-        </header>
-
-        <div class="container">
-            <div class="button-container">  <a href="datasiswa.php" class="btn btn-primary btn-md">Kembali</a>
-                <a href="cetakmasuk.php" class="btn btn-success">Cetak</a>
-            </div>
-
-            <form method="GET" action="">
-                <div class="row mb-3">
-                    <div class="col-auto">
-                        <select class="form-select" name="bulan">
-                            <option value="">-- Pilih Bulan --</option>
-                            <?php
-                            $bulan = array(
-                                "Januari", "Februari", "Maret", "April", "Mei", "Juni",
-                                "Juli", "Agustus", "September", "Oktober", "November", "Desember"
-                            );
-                            for ($i = 1; $i <= 12; $i++) {
-                                $selected = (isset($_GET['bulan']) && $_GET['bulan'] == $i) ? 'selected' : '';
-                                echo '<option value="' . $i . '" ' . $selected . '>' . $bulan[$i - 1] . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="col-auto">
-                        <select class="form-select" name="tahun">
-                            <option value="">-- Pilih Tahun --</option>
-                            <?php
-                            $tahun_awal = 2020; // Ganti dengan tahun awal yang Anda inginkan
-                            $tahun_akhir = date("Y");
-                            for ($tahun = $tahun_awal; $tahun <= $tahun_akhir; $tahun++) {
-                                $selected_tahun = (isset($_GET['tahun']) && $_GET['tahun'] == $tahun) ? 'selected' : '';
-                                echo "<option value='$tahun' $selected_tahun>$tahun</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-primary">Tampilkan</button>
-                    </div>
-                </div>
-            </form>
-
-            <table class="table table-striped table-hover table-bordered mt-5">
-                <thead class="table-dark">
-                    <tr>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>Kelas</th>
-                        <th>Jurusan</th>
-                        <th>Mapel</th>
-                        <th>Tanggal</th>
-                        <th>Jam</th>
-                        <th>Foto</th>
-                        <th>Tindakan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $i = 1;
-                    $bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : '';
-                    $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : '';
-
-                    $sql = "SELECT * FROM tb_absen";
-                    $where_clause = "";
-
-                    if (!empty($bulan_dipilih)) {
-                        $where_clause .= "MONTH(tanggal) = '$bulan_dipilih'";
-                    }
-
-                    if (!empty($tahun_dipilih)) {
-                        if (!empty($where_clause)) {
-                            $where_clause .= " AND ";
-                        }
-                        $where_clause .= "YEAR(tanggal) = '$tahun_dipilih'";
-                    }
-
-                    if (!empty($where_clause)) {
-                        $sql .= " WHERE " . $where_clause;
-                    }
-
-                    $query = mysqli_query($conn, $sql);
-
-                    if ($query) {
-                        while ($siswa = mysqli_fetch_array($query)):
-                            ?>
-                            <tr>
-                                <td>
-                                    <?php echo $i ?>
-                                </td>
-                                <td>
-                                    <?php echo $siswa['nama'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $siswa['kelas'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $siswa['jurusan'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $siswa['mapel'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $siswa['tanggal'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $siswa['time'] ?>
-                                </td>
-                                <td><img src="images/<?php echo $siswa['foto']; ?>" width="120" style="display: block;"></td>
-                                <td>
-                                    <div class='row'>
-                                        <div class='col d-flex justify-content-center'>
-                                            <a href="form-edit-masuk.php?id=<?php echo $siswa['id'] ?>"
-                                                class='btn btn-sm btn-warning'>Edit</a>
-                                        </div>
-                                        <div class='col d-flex justify-content-center'>
-                                            <a href="hapusmasuk.php?id=<?= $siswa['id']; ?>"
-                                                onclick="return confirm('apakah anda yakin?');"
-                                                class='btn btn-sm btn-danger'>hapus</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <?php $i++;
-                        endwhile;
-                    } else {
-                        echo "<tr><td colspan='9'>Error: " . mysqli_error($conn) . "</td></tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
-            <p>Total Siswa Absen:
-                <?php echo mysqli_num_rows($query) ?>
-            </p>
-        </div>
-    </div>
     
+    <nav>
+        <div class="logo">
+            <img src="kanesa.png" width="50px" height="50px">
+            <h2>SMKN 1 KEPANJEN</h2>
+        </div>
+        <ul>
+            <li><a href="index.html"><i class='bx bxs-home'></i> Home</a></li>
+            <li><a href="absenmasuk.php"><i class='bx bxs-user-circle'></i> Absen Masuk</a></li>
+            <li><a href="absenpulang.php"><i class='bx bxs-message-dots'></i> Absen Pulang</a></li>
+            <li><a href="datasiswa.php"><i class='bx bxs-bar-chart-alt-2'></i> Data Absensi</a></li>
+            <li><a href="setting_jam_kerja.php"><i class='bx bx-log-in'></i>Master Jadwal</a></li>
+            <li><a href="contact.php"><i class='bx bxs-cog'></i> Contact</a></li>
+            <li><a href="login.php"><i class='bx bx-log-in'></i> Logout</a></li>
+        </ul>
+    </nav>
+    <header class="form-control">
+        <h1>List Absen Masuk Siswa</h1>
+    </header>
+
+    <div class="container">
+        <div class="button-container"> <a href="datasiswa.php" class="btn btn-primary btn-md">Kembali</a>
+            <a href="cetakmasuk.php" class="btn btn-success">Cetak</a>
+        </div>
+
+        
+
+        <form method="GET" action="">
+            <div class="row mb-3">
+                <div class="col-auto">
+                    <select class="form-select" name="bulan">
+                        <option value="">-- Pilih Bulan --</option>
+                        <?php
+                        $bulan = array(
+                            "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                            "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+                        );
+                        for ($i = 1; $i <= 12; $i++) {
+                            $selected = (isset($_GET['bulan']) && $_GET['bulan'] == $i) ? 'selected' : '';
+                            echo '<option value="' . $i . '" ' . $selected . '>' . $bulan[$i - 1] . '</option>';
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <select class="form-select" name="tahun">
+                        <option value="">-- Pilih Tahun --</option>
+                        <?php
+                        $tahun_awal = 2020;
+                        $tahun_akhir = date("Y");
+                        for ($tahun = $tahun_awal; $tahun <= $tahun_akhir; $tahun++) {
+                            $selected_tahun = (isset($_GET['tahun']) && $_GET['tahun'] == $tahun) ? 'selected' : '';
+                            echo "<option value='$tahun' $selected_tahun>$tahun</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">Tampilkan</button>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-transparent table-hover table-bordered mt-5">
+            <thead class="table-dark">
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Kelas</th>
+                    <th>Jurusan</th>
+                    <th>Tanggal & waktu</th>
+                    <th>Status</th>
+                    <th>Foto</th> 
+                    <th>Keterangan</th>
+                    <th>Tindakan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $i = 1;
+                $bulan_dipilih = isset($_GET['bulan']) ? $_GET['bulan'] : '';
+                $tahun_dipilih = isset($_GET['tahun']) ? $_GET['tahun'] : '';
+
+                $sql = "SELECT tb_absen.*, master_jadwal.jam_masuk, TIME(tb_absen.tanggal_waktu) AS absen_time, DAYNAME(tb_absen.tanggal_waktu) AS hari_absen
+        FROM tb_absen
+        LEFT JOIN master_jadwal ON DAYNAME(tb_absen.tanggal_waktu) = master_jadwal.hari";
+
+
+                $where_clause = "";
+
+                if (!empty($bulan_dipilih)) {
+                    $where_clause .= "MONTH(tb_absen.tanggal_waktu) = '$bulan_dipilih'";
+                }
+
+                if (!empty($tahun_dipilih)) {
+                    if (!empty($where_clause)) {
+                        $where_clause .= " AND ";
+                    }
+                    $where_clause .= "YEAR(tb_absen.tanggal_waktu) = '$tahun_dipilih'";
+                }
+
+                if (!empty($where_clause)) {
+                    $sql .= " WHERE " . $where_clause;
+                }
+
+                $query = mysqli_query($conn, $sql);
+
+                if ($query) {
+                    while ($siswa = mysqli_fetch_array($query)) :
+                        $status = 'tepat-waktu';
+
+                        if ($siswa['jam_masuk'] !== null) {
+                            $jam_masuk = strtotime($siswa['jam_masuk']);
+                            $jam_absen = strtotime($siswa['absen_time']);
+
+                            if ($jam_absen > $jam_masuk) {
+                                $status = 'terlambat';
+                            }
+                        }
+                ?>
+                        <tr>
+                            <td><?php echo $i ?></td>
+                            <td><?php echo $siswa['nama'] ?></td>
+                            <td><?php echo $siswa['kelas'] ?></td>
+                            <td><?php echo $siswa['jurusan'] ?></td>
+                            <td><?php echo $siswa['tanggal_waktu'] ?></td>
+                            <td class="<?php echo $status; ?>">
+                                <?php echo ($status == 'terlambat') ? 'Terlambat' : 'Tepat Waktu'; ?>
+                            <td>
+                                <a href="images/<?php echo $siswa['foto']; ?>" data-fancybox="gallery" data-caption="<?php echo $siswa['nama'] . ' - ' . $siswa['tanggal_waktu']; ?>">
+                                    <img src="images/<?php echo $siswa['foto']; ?>" width="120" style="display: block;">
+                                </a>
+                            </td>
+                            <td class="<?php echo $siswa['keterangan']; ?>"> 
+                                <span class="keterangan-box">
+                                    <?php echo $siswa['keterangan']; ?>
+                                </span>
+                            </td>
+                            <td>
+                                <div class='row'>
+                                    <div class='col d-flex justify-content-center'>
+                                        <a href="form-edit-masuk.php?id=<?php echo $siswa['id'] ?>" class='btn btn-sm btn-warning'>
+                                            <i class='bx bxs-edit'></i>
+                                        </a>
+                                    </div>
+                                    <div class='col d-flex justify-content-center'>
+                                        <a href="hapusmasuk.php?id=<?= $siswa['id']; ?>" onclick="return confirm('apakah anda yakin?');" class='btn btn-sm btn-danger'>
+                                            <i class='bx bxs-trash'></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php
+                        $i++;
+                    endwhile;
+                } else {
+                    echo "<tr><td colspan='9'>Error: " . mysqli_error($conn) . "</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+        <p>Total Siswa Absen:
+            <?php echo mysqli_num_rows($query) ?>
+        </p>
+    </div>
 </body>
 
 </html>

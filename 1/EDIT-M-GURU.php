@@ -26,8 +26,8 @@ if (!$siswa) {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <style>
-      nav {
-      background-color: #333333;
+    nav {
+      background-color: #333;
       color: white;
       padding: 20px;
       top:0px;
@@ -41,14 +41,13 @@ if (!$siswa) {
 
     nav ul {
       list-style: none;
-      margin: 10px;
-      padding: 2px;
+      margin: 0;
+      padding: 0;
       display: flex;
     }
 
     nav li {
       margin-left: 20px;
-      font-size: large;
     }
 
     nav a {
@@ -56,7 +55,7 @@ if (!$siswa) {
       text-decoration: none;
       padding: 5px 10px;
       border-radius: 5px;
-      transition: background-color 0.5s ease;
+      transition: background-color 0.3s ease;
     }
 
     nav a:hover {
@@ -74,15 +73,15 @@ if (!$siswa) {
 
     .content {
       padding: 20px;
-      margin-top: 70px;
-      /* Adjust to navbar height + some extra */
+      margin-top: 0px;
       font-family: sans-serif;
       background-color: #cadef5;
-      /* Blue background */
       background-size: cover;
       background-position: center;
       min-height: 100vh;
-      overflow-y: auto;
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
     }
     .header-title {
       text-align: center; 
@@ -104,6 +103,17 @@ if (!$siswa) {
     .btn {
       border-radius: 10px; 
     }
+
+    .row {
+      display: flex;
+      justify-content: space-between; 
+      align-items: center; 
+    }
+
+    .col-md-6 {
+      flex: 1;
+      margin-right: 15px;
+    }
   </style>
 </head>
 
@@ -118,7 +128,7 @@ if (!$siswa) {
       <li><a href="absenmasuk.php"><i class='bx bxs-user-circle'></i> Absen Masuk</a></li>
       <li><a href="absenpulang.php"><i class='bx bxs-message-dots'></i> Absen Pulang</a></li>
       <li><a href="datasiswa.php"><i class='bx bxs-bar-chart-alt-2'></i> Data Absensi</a></li>
-      <li><a href="#"><i class='bx bxs-cog'></i> Setting</a></li>
+      <li><a href="contact.php"><i class='bx bxs-cog'></i> Contact</a></li>
       <li><a href="login.php"><i class='bx bx-log-in'></i> Logout</a></li>
     </ul>
   </nav>
@@ -126,43 +136,53 @@ if (!$siswa) {
     <div class="content">
     <div class="card w-50 mx-auto p-4">
     <header  class="header-title">
-        <h1>Edit Absen Masuk</h1>
+        <h1>Edit Absen Masuk</h1><br>
         </header>
-    <form action="PRO-EDIT-MASUK.php" method="POST">
-        <input type="hidden" name="id" value="<?php echo $siswa['id']; ?>">
-        <div class="row mb-3">
-          <div class="col-md-6">
-            <ol for="id_guru" >ID Guru</ol>
-            <input type="text" class="form-control" id="id_guru" name="id_guru" value="<?php echo $siswa['id_guru']; ?>" required>
-          </div>
-          <div class="col-md-6">
-            <ol for="nama" >Nama</ol>
-            <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $siswa['nama']; ?>" required>
-          </div>
-          </div>
-        <div class="row mb-3">
-          <div class="col-md-6">
-            <ol for="tanggal">Tanggal</ol>
-            <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?php echo $siswa['tanggal']; ?>" required>
-          </div>
-          <div class="col-md-6">
-            <ol for="time">Jam</ol>
-            <input type="time" class="form-control" id="time" name="time" value="<?php echo $siswa['time']; ?>" required>
-          </div>
-          </div>
-        <div class="mb-3">
-            <ol for="foto">Foto Siswa:</ol>
-            <input type="file" name="foto" class="form-control" onchange="previewImage()">
-            <img src="images/<?= $siswa['foto']; ?>" width="120" style="display: block;" class="img-preview">
-        </div>
-        <button type="submit" class="btn btn-primary">Update</button>
-        <a href="LIST-M-GURU.php" class="btn btn-secondary">Kembali</a>
-    </form>
+    <form action="PRO-EDIT-MASUK.php" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="<?php echo $siswa['id']; ?>">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <ol for="nama">Nama</ol>
+        <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $siswa['nama']; ?>" required>
+      </div>
+      <div class="col-md-6">
+        <ol for="time">Jam</ol>
+        <input type="time" class="form-control" id="time" name="time" value="<?php echo $siswa['time']; ?>" readonly>
+      </div>
+  </div>
+  <div class="row mb-3">
+      <div class="col-md-6">
+        <ol for="id_guru">Id Guru</ol>
+        <input type="text" class="form-control" id="id_guru" name="id_guru" value="<?php echo $siswa['id_guru']; ?>" required>
+      </div>
+      <div class="col-md-6">
+        <ol for="tanggal">Tanggal</ol>
+        <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?php echo $siswa['tanggal']; ?>" readonly>
+      </div>
+      </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <ol for="foto">Foto Guru:</ol>
+        <input type="file" name="foto" class="form-control" onchange="previewImage()">
+        <img src="images/<?= $siswa['foto']; ?>" width="120" style="display: block;" class="img-preview">
+      </div>
+      <div class="col-md-6">
+        <ol for="keterangan">Keterangan</ol>
+        <select class="form-select" id="keterangan" name="keterangan" required>
+            <option value="masuk" <?php echo ($siswa['keterangan'] == 'masuk') ? 'selected' : ''; ?>>Masuk</option>
+            <option value="izin" <?php echo ($siswa['keterangan'] == 'izin') ? 'selected' : ''; ?>>Izin</option>
+            <option value="sakit" <?php echo ($siswa['keterangan'] == 'sakit') ? 'selected' : ''; ?>>Sakit</option>
+        </select>
+      </div>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a href="LIST-M-GURU.php" class="btn btn-secondary">Kembali</a>
+</form>
 </div>
 </body>
 <style>
 .container .sidenav {
-    
     width: 115px;
     height: 100vh;
     overflow: hidden;
@@ -172,7 +192,6 @@ if (!$siswa) {
     transition: width 0.6s, left 0.6s;
     left: -20px;
     bottom: 0px;
-    /* Adjust the value for desired leftward shift */
 }
 </style>
 

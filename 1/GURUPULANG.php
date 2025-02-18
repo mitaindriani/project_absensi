@@ -58,7 +58,7 @@
 
     .content {
       padding: 20px;
-      margin-top: 70px;
+      margin-top: 0px;
       font-family: sans-serif;
       background-color: #cadef5;
       background-size: cover;
@@ -103,7 +103,7 @@
       <li><a href="absenmasuk.php"><i class='bx bxs-user-circle'></i> Absen Masuk</a></li>
       <li><a href="absenpulang.php"><i class='bx bxs-message-dots'></i> Absen Pulang</a></li>
       <li><a href="datasiswa.php"><i class='bx bxs-bar-chart-alt-2'></i> Data Absensi</a></li>
-      <li><a href="#"><i class='bx bxs-cog'></i> Setting</a></li>
+      <li><a href="contact.php"><i class='bx bxs-cog'></i> Contact</a></li>
       <li><a href="login.php"><i class='bx bx-log-in'></i> Logout</a></li>
     </ul>
   </nav>
@@ -111,7 +111,7 @@
   <div class="content">
     <div class="card w-50 mx-auto p-4">
       <header class="header-title">
-        <h1>Absen Pulang</h1>
+        <h1>Absen Pulang Guru</h1>
       </header>
       <form action="PROSES-P-GURU.php" method="POST">
         <fieldset>
@@ -127,12 +127,8 @@
           </div>
           <div class="row mb-3">
             <div class="col-md-6">
-              <label for="tanggal">Tanggal:</label>
-              <input type="text" name="tanggal" class="form-control" value="<?php echo date('d/m/Y'); ?>" readonly />
-            </div>
-            <div class="col-md-6">
-              <label for="time">Jam:</label>
-              <input type="text" name="time" class="form-control" value="<?php echo date('H:i:s'); ?>" readonly />
+              <label for="tanggal_waktu">Tanggal dan Waktu:</label>
+              <input type="datetime-local" name="tanggal_waktu" class="form-control" value="<?php echo date('Y-m-d\TH:i:s'); ?>" readonly/>
             </div>
           </div>
           <button type="submit" name="daftar" class="btn btn-primary">Absen</button>

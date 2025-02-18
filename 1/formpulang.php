@@ -58,13 +58,15 @@
 
     .content {
       padding: 20px;
-      margin-top: 70px; 
+      margin-top: 0px; 
       font-family: sans-serif;
       background-color: #cadef5; 
       background-size: cover;
       background-position: center;
       min-height: 100vh;
-      overflow-y: auto;
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
     }
 
     .header-title {
@@ -77,7 +79,7 @@
       border: none; 
       border-radius: 15px; 
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
-      margin-top: 40px;
+      margin-top: 40px; 
     }
 
     .form-control {
@@ -101,33 +103,34 @@
       <li><a href="absenmasuk.php"><i class='bx bxs-user-circle'></i> Absen Masuk</a></li>
       <li><a href="absenpulang.php"><i class='bx bxs-message-dots'></i> Absen Pulang</a></li>
       <li><a href="datasiswa.php"><i class='bx bxs-bar-chart-alt-2'></i> Data Absensi</a></li>
-      <li><a href="#"><i class='bx bxs-cog'></i> Setting</a></li>
+      <li><a href="setting_jam_kerja.php"><i class='bx bx-log-in'></i>Master Jadwal</a></li>
+      <li><a href="contact.php"><i class='bx bxs-cog'></i> Contact</a></li>
       <li><a href="login.php"><i class='bx bx-log-in'></i> Logout</a></li>
     </ul>
   </nav>
 
-  <div class="content">
-    <div class="card w-50 mx-auto p-4">
-    <header class="header-title">
-      <h1>Absen Pulang Siswa</h1>
-    </header>
-      <form action="prosesmasuk.php" method="POST" enctype="multipart/form-data">
+  <div class="content"> 
+    <div class="card w-50 mx-auto p-4"> 
+      <header class="header-title">
+        <h1>Absen Pulang Siswa</h1>
+      </header>
+      <form action="prosespulang.php" method="POST" enctype="multipart/form-data">
         <fieldset>
           <div class="row mb-3">
             <div class="col-md-6">
-              <ol for="nama">Nama:</ol>
+              <label for="nama">Nama:</label>
               <input type="text" name="nama" placeholder="Nama Lengkap" class="form-control" required />
             </div>
             <div class="col-md-6">
-                <ol for="time">Jam:</ol>
-                <input type="text" name="time" class="form-control" value="<?php echo date('H:i:s'); ?>" readonly />
+              <label for="tanggal_waktu">Tanggal dan Waktu:</label>
+              <input type="datetime-local" name="tanggal_waktu" class="form-control" value="<?php echo date('Y-m-d\TH:i:s'); ?>" readonly/>
             </div>
           </div>
           <div class="row mb-3">
             <div class="col-md-6">
-              <ol for="jurusan">Jurusan:</ol>
+              <label for="jurusan">Jurusan:</label>
               <select name="jurusan" id="jurusan" class="form-select" required>
-                <option value="">Pilih Jurusan</option>
+                <option value="">Pilih Jurusan</option>   
                 <option value="rpl">RPL</option>
                 <option value="tkj">TKJ</option>
                 <option value="tkr">TKR</option>
@@ -136,25 +139,22 @@
               </select>
             </div>
             <div class="col-md-6">
-              <ol for="tanggal">Tanggal:</ol>
-              <input type="text" name="tanggal" class="form-control" value="<?php echo date('d/m/Y'); ?>" readonly />
-            </div>
-          </div>
-          <div class="mb-3">
-            <ol for="kelas">Kelas:</ol>
+              <label for="kelas">Kelas:</label>
               <select name="kelas" id="kelas" class="form-select" required>
-                <option value="">Pilih Kelas</option>
+                <option value="">Pilih Kelas</option>   
                 <option value="X">X</option>
                 <option value="XI">XI</option>
                 <option value="XII">XII</option>
               </select>
-          </div>
+            </div>
+            </div>
           <button type="submit" name="daftar" class="btn btn-primary">Absen</button>
           <a href="absenpulang.php" class="btn btn-secondary">Kembali</a>
         </fieldset>
       </form>
     </div>
   </div>
+
 </body>
 
 </html>

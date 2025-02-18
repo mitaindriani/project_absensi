@@ -69,12 +69,12 @@
 
     .subject_buttons button {
       margin: 10px; 
-      background-color:rgb(115, 144, 173); /* Bootstrap primary color */
-      color: white; /* Text color */
-      border: none; /* Remove border */
-      padding: 10px 20px; /* Padding for buttons */
-      border-radius: 30px; /* Rounded corners */
-      transition: background-color 0.3s ease; /* Transition for hover effect */
+      background-color:rgb(115, 144, 173); 
+      color: white; 
+      border: none; 
+      padding: 10px 20px; 
+      border-radius: 30px; 
+      transition: background-color 0.3s ease;
     }
 
     .subject_buttons button:hover {
@@ -96,8 +96,8 @@
     }
 
     .button-container {
-            display: flex; /* Enable flexbox for alignment */
-            justify-content: flex-end; /* Align buttons to the right */
+            display: flex; 
+            justify-content: flex-end;
             margin-top: 80px;
             margin-bottom: -40px;
         }
@@ -110,17 +110,17 @@
             border: none;
             background-color: transparent;
             padding: 0;
-            margin-top: 100px; /* Increased margin-top */
+            margin-top: 100px; 
             margin-bottom: 20px;
-            text-align: center; /* Center the text */
+            text-align: center; 
         }
 
         .form-control h1 {
             margin-bottom: -40px;
         }
         body{
-  background-color:#D9EAFD;
-}
+            background-color:#D9EAFD;
+        }
   </style>
 </head>
 
@@ -135,7 +135,8 @@
       <li><a href="absenmasuk.php"><i class='bx bxs-user-circle'></i> Absen Masuk</a></li>
       <li><a href="absenpulang.php"><i class='bx bxs-message-dots'></i> Absen Pulang</a></li>
       <li><a href="datasiswa.php"><i class='bx bxs-bar-chart-alt-2'></i> Data Absensi</a></li>
-      <li><a href="#"><i class='bx bxs-cog'></i> Setting</a></li>
+      <li><a href="setting_jam_kerja.php"><i class='bx bx-log-in'></i>Master Jadwal</a></li>
+      <li><a href="contact.php"><i class='bx bxs-cog'></i> Contact</a></li>
       <li><a href="login.php"><i class='bx bx-log-in'></i> Logout</a></li>
     </ul>
   </nav>
@@ -169,7 +170,7 @@
                         <select class="form-select" name="tahun">
                             <option value="">-- Pilih Tahun --</option>
                             <?php
-                            $tahun_awal = 2020; // Ganti dengan tahun awal yang Anda inginkan
+                            $tahun_awal = 2020; // Ganti dengan tahun awal yang di inginkan
                             $tahun_akhir = date("Y");
                             for ($tahun = $tahun_awal; $tahun <= $tahun_akhir; $tahun++) {
                                 $selected_tahun = (isset($_GET['tahun']) && $_GET['tahun'] == $tahun) ? 'selected' : '';
@@ -191,8 +192,7 @@
                         <th>Nama</th>
                         <th>Kelas</th>
                         <th>Jurusan</th>
-                        <th>Tanggal</th>
-                        <th>Jam</th>
+                        <th>Tanggal & waktu</th>
                         <th>Tindakan</th>
                     </tr>
                 </thead>
@@ -206,14 +206,14 @@
                     $where_clause = "";
 
                     if (!empty($bulan_dipilih)) {
-                        $where_clause .= "MONTH(tanggal) = '$bulan_dipilih'";
+                        $where_clause .= "MONTH(tanggal_waktu) = '$bulan_dipilih'";
                     }
 
                     if (!empty($tahun_dipilih)) {
                         if (!empty($where_clause)) {
                             $where_clause .= " AND ";
                         }
-                        $where_clause .= "YEAR(tanggal) = '$tahun_dipilih'";
+                        $where_clause .= "YEAR(tanggal_waktu) = '$tahun_dipilih'";
                     }
 
                     if (!empty($where_clause)) {
@@ -239,10 +239,7 @@
                                     <?php echo $siswa['jurusan'] ?>
                                 </td>
                                 <td>
-                                    <?php echo $siswa['tanggal'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $siswa['time'] ?>
+                                    <?php echo $siswa['tanggal_waktu'] ?>
                                 </td>
                                 <td>
                                     <div class='row'>
@@ -251,7 +248,7 @@
                                                 class='btn btn-sm btn-warning'>Edit</a>
                                         </div>
                                         <div class='col d-flex justify-content-center'>
-                                            <a href="hapusmasuk.php?id=<?= $siswa['id']; ?>"
+                                            <a href="hapuspulang.php?id=<?= $siswa['id']; ?>"
                                                 onclick="return confirm('apakah anda yakin?');"
                                                 class='btn btn-sm btn-danger'>hapus</a>
                                         </div>
@@ -266,7 +263,7 @@
                     ?>
                 </tbody>
             </table>
-            <p>Total Siswa Absen:
+            <p>Total Siswa Absen Pulang: 
                 <?php echo mysqli_num_rows($query) ?>
             </p>
         </div>

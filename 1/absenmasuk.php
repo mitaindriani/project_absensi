@@ -62,19 +62,19 @@
       border-radius: 60px; 
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
       text-align: center; 
-      width: 80%; /* Increased width */
-      max-width: 800px; /* Set a max width */
+      width: 80%; 
+      max-width: 800px;
       height: 300px;
     }
 
     .subject_buttons button {
       margin: 20px; 
-      background-color:rgb(115, 144, 173); /* Bootstrap primary color */
-      color: white; /* Text color */
-      border: none; /* Remove border */
-      padding: 10px 30px; /* Padding for buttons */
-      border-radius: 30px; /* Rounded corners */
-      transition: background-color 0.3s ease; /* Transition for hover effect */
+      background-color:rgb(115, 144, 173); 
+      color: white;
+      border: none;
+      padding: 10px 30px;
+      border-radius: 30px; 
+      transition: background-color 0.3s ease;
     }
 
     .subject_buttons button:hover {
@@ -83,13 +83,13 @@
 
     .content {
       padding: 100px 20px;
-      margin-top: 70px;
+      margin-top: 0px;
       font-family: sans-serif;
       background-color: #cadef5;
       background-size: cover;
       background-position: center;
       min-height: 100vh;
-      overflow-y: auto;
+      overflow-x: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -108,7 +108,8 @@
       <li><a href="absenmasuk.php"><i class='bx bxs-user-circle'></i> Absen Masuk</a></li>
       <li><a href="absenpulang.php"><i class='bx bxs-message-dots'></i> Absen Pulang</a></li>
       <li><a href="datasiswa.php"><i class='bx bxs-bar-chart-alt-2'></i> Data Absensi</a></li>
-      <li><a href="#"><i class='bx bxs-cog'></i> Setting</a></li>
+      <li><a href="setting_jam_kerja.php"><i class='bx bx-log-in'></i>Master Jadwal</a></li>
+      <li><a href="contact.php"><i class='bx bxs-cog'></i> Contact</a></li>
       <li><a href="login.php"><i class='bx bx-log-in'></i> Logout</a></li>
     </ul>
   </nav>

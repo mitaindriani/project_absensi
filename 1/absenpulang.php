@@ -10,7 +10,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <style>
-     nav {
+   nav {
       background-color: #333;
       color: white;
       padding: 20px;
@@ -68,12 +68,12 @@
     }
 
     .subject_buttons button {
-      margin: 10px; 
+      margin: 20px; 
       background-color:rgb(115, 144, 173); 
-      color: white; 
+      color: white;
       border: none;
-      padding: 10px 20px;
-      border-radius: 30px;
+      padding: 10px 30px;
+      border-radius: 30px; 
       transition: background-color 0.3s ease;
     }
 
@@ -83,13 +83,13 @@
 
     .content {
       padding: 100px 20px;
-      margin-top: 70px;
+      margin-top: 0px;
       font-family: sans-serif;
       background-color: #cadef5;
       background-size: cover;
       background-position: center;
       min-height: 100vh;
-      overflow-y: auto;
+      overflow-x: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -108,7 +108,8 @@
       <li><a href="absenmasuk.php"><i class='bx bxs-user-circle'></i> Absen Masuk</a></li>
       <li><a href="absenpulang.php"><i class='bx bxs-message-dots'></i> Absen Pulang</a></li>
       <li><a href="datasiswa.php"><i class='bx bxs-bar-chart-alt-2'></i> Data Absensi</a></li>
-      <li><a href="#"><i class='bx bxs-cog'></i> Setting</a></li>
+      <li><a href="setting_jam_kerja.php"><i class='bx bx-log-in'></i>Master Jadwal</a></li>
+      <li><a href="contact.php"><i class='bx bxs-cog'></i> Contact</a></li>
       <li><a href="login.php"><i class='bx bx-log-in'></i> Logout</a></li>
     </ul>
   </nav>

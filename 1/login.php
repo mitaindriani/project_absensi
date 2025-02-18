@@ -1,15 +1,14 @@
 <?php
 
 // Koneksi ke database
-$servername = "localhost"; // Ganti dengan nama host database Anda
-$username = "root"; // Ganti dengan username database Anda
-$password = ""; // Ganti dengan password database Anda
-$dbname = "db_apk2"; // Nama database
+$servername = "localhost"; 
+$username = "root"; 
+$password = ""; 
+$dbname = "db_apk2";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+// cek koneksi
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
@@ -47,26 +46,25 @@ $conn->close(); // Tutup koneksi database setelah selesai
 <style>
 body {
   font-family: sans-serif;
-  background-image: url('blue.jpeg'); /* Ganti dengan path gambar latar belakang Anda */
-  background-size: cover; /* Mengatur gambar agar menutupi seluruh latar belakang */
-  background-position: center; /* Memusatkan gambar */
+  background-image: url('blue.jpeg');
+  background-size: cover; 
+  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  position: relative; /* Menambahkan posisi relatif untuk pseudo-element */
-  overflow: hidden; /* Menyembunyikan overflow */
+  position: relative; 
+  overflow: hidden; 
 }
 
 body::before {
-  content: ""; /* Membuat pseudo-element */
-  /* Memposisikan pseudo-element */
+  content: ""; 
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 0.2); /* Warna gelap dengan transparansi */
-  z-index: 1; /* Menempatkan pseudo-element di belakang konten */
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: 1;
 }
 
 .container {
@@ -74,8 +72,8 @@ body::before {
   padding: 40px 100px;
   border-radius: 10px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
-  position: relative; /* Menambahkan posisi relatif untuk kontainer */
-  z-index: 2; /* Menempatkan kontainer di atas pseudo-element */
+  position: relative; 
+  z-index: 2; 
 }
 
 .logo {

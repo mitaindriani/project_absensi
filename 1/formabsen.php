@@ -58,13 +58,15 @@
 
     .content {
       padding: 20px;
-      margin-top: 70px; 
+      margin-top: 0px; 
       font-family: sans-serif;
       background-color: #cadef5; 
       background-size: cover;
       background-position: center;
       min-height: 100vh;
-      overflow-y: auto;
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
     }
 
     .header-title {
@@ -77,7 +79,7 @@
       border: none; 
       border-radius: 15px; 
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
-      margin-top: 40px;
+      margin-top: 40px; 
     }
 
     .form-control {
@@ -101,7 +103,7 @@
       <li><a href="absenmasuk.php"><i class='bx bxs-user-circle'></i> Absen Masuk</a></li>
       <li><a href="absenpulang.php"><i class='bx bxs-message-dots'></i> Absen Pulang</a></li>
       <li><a href="datasiswa.php"><i class='bx bxs-bar-chart-alt-2'></i> Data Absensi</a></li>
-      <li><a href="#"><i class='bx bxs-cog'></i> Setting</a></li>
+      <li><a href="contact.php"><i class='bx bxs-cog'></i> Contact</a></li>
       <li><a href="login.php"><i class='bx bx-log-in'></i> Logout</a></li>
     </ul>
   </nav>
@@ -130,18 +132,6 @@
           </div>
           <div class="row mb-3">
             <div class="col-md-6">
-              <label for="mapel">Mapel:</label>
-              <select name="mapel" id="mapel" class="form-select" required>
-                <option value="">Pilih Mapel</option>   
-                <option value="MTK">MTK</option>
-                <option value="BING">BING</option>
-                <option value="IPA">IPA</option>
-                <option value="BIN">BIN</option>
-                <option value="PKN">PKN</option> 
-                <option value="SEJARAH">SEJARAH</option>
-              </select>
-            </div>
-            <div class="col-md-6">
               <label for="jurusan">Jurusan:</label>
               <select name="jurusan" id="jurusan" class="form-select" required>
                 <option value="">Pilih Jurusan</option>   
@@ -152,20 +142,25 @@
                 <option value="tei">TEI</option>
               </select>
             </div>
+            <div class="col-md-6">
+                <label for="tanggal_waktu">Tanggal dan Waktu:</label>
+                <input type="datetime-local" name="tanggal_waktu" class="form-control" value="<?php echo date('Y-m-d\TH:i:s'); ?>" readonly/>
+            </div>
           </div>
           <div class="row mb-3">
             <div class="col-md-6">
-              <label for="tanggal">Tanggal:</label>
-              <input type="readonly" name="tanggal" class="form-control" value="<?php echo date('d/m/Y'); ?>" readonly />
+              <label for="foto">Foto Siswa:</label>
+              <input type="file" class="form-control" id="foto" name="foto" required>
             </div>
-            <div class="col-md-6">
-              <label for="time">Jam:</label>
-              <input type="readonly" name="time" class="form-control" value="<?php echo date('H:i:s'); ?>" readonly/>
+              <div class="col-md-6">
+                <label for="keterangan">Keterangan:</label>
+                <select name="keterangan" id="keterangan" class="form-select" required>
+                <option value="">Pilih Keterangan</option>   
+                <option value="masuk">Masuk</option>
+                <option value="izin">Izin</option>
+                <option value="sakit">Sakit</option>
+              </select>
             </div>
-          </div>
-          <div class="mb-3">
-            <label for="foto">Foto Siswa:</label>
-            <input type="file" class="form-control" id="foto" name="foto" required>
           </div>
           <button type="submit" name="daftar" class="btn btn-primary">Absen</button>
           <a href="absenmasuk.php" class="btn btn-secondary">Kembali</a>
